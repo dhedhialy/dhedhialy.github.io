@@ -3,56 +3,86 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Aly Dhedhi</title>
+<title>Aly Dhedhi — terminal</title>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0a0a;color:#c0c0c0;font-family:'JetBrains Mono',monospace;overflow-x:hidden;font-size:13px;line-height:1.6}
+body{background:#1a1a1a;color:#c0c0c0;font-family:'JetBrains Mono',monospace;font-size:14px;line-height:1.6;overflow-x:hidden;display:flex;justify-content:center;padding:20px;min-height:100vh}
 ::selection{background:#00ff41;color:#0a0a0a}
-::-webkit-scrollbar{width:6px}
-::-webkit-scrollbar-track{background:#0a0a0a}
-::-webkit-scrollbar-thumb{background:#005a1a;border-radius:3px}
 
-.wrap{max-width:800px;margin:0 auto;padding:40px 20px}
+.terminal{max-width:900px;width:100%;background:#0d0d0d;border-radius:8px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.8);border:1px solid #2a2a2a;height:fit-content}
 
+/* ── title bar ── */
+.title-bar{background:#1c1c1c;padding:10px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #2a2a2a;user-select:none}
+.dots{display:flex;gap:7px}
+.dot{width:12px;height:12px;border-radius:50%}
+.dot.r{background:#ff5f56}
+.dot.y{background:#ffbd2e}
+.dot.g{background:#27c93f}
+.title-text{color:#666;font-size:12px;flex:1;text-align:center}
+
+/* ── body ── */
+.body{padding:24px 24px 32px;overflow-x:auto}
+
+.line{margin-bottom:6px;white-space:pre-wrap;word-break:break-word}
+
+.prompt{color:#00ff41}
+.host{color:#00ff41}
+.path{color:#569cd6}
+.dim{color:#555}
 .g{color:#00ff41}
-.d{color:#005a1a}
-.m{color:rgba(192,192,192,.5)}
+.m{color:rgba(192,192,192,.4);font-size:12px}
 .t{color:rgba(192,192,192,.8)}
+.section-title{color:#00ff41;font-size:13px;font-weight:600;margin-top:20px;margin-bottom:8px}
+.section-title::before{content:"# ";color:#333}
 
-pre{color:#00ff41;font-size:clamp(6px,1.5vw,12px);line-height:1.1}
+/* ascii */
+pre{color:#00ff41;font-size:clamp(5px,1.3vw,11px);line-height:1.05;margin-bottom:8px}
 
-.tag{display:inline-block;padding:2px 8px;border:1px solid rgba(0,90,26,.3);border-radius:3px;font-size:10px;color:rgba(192,192,192,.5);margin-right:4px;margin-bottom:4px}
+/* details */
+details{margin-bottom:4px}
+summary{color:#00ff41;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;font-size:13px;padding:4px 0;transition:opacity .2s}
+summary:hover{opacity:.7}
+summary .arrow{color:#444;transition:color .2s}
+details[open] .arrow{color:#00ff41}
+.detail-body{padding:4px 0 10px 20px;border-left:1px solid rgba(0,90,26,.3);margin-left:4px}
+.detail-body p,.detail-body li{font-size:13px;line-height:1.7;color:rgba(192,192,192,.7);margin-bottom:4px}
+.detail-body li{list-style:none}
+.detail-body li::before{content:"-  ";color:#333}
+.detail-body a{color:#00ff41;text-decoration:none}
+.detail-body a:hover{text-decoration:underline}
 
-details{margin-bottom:8px}
-summary{color:#00ff41;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;font-size:13px;padding:6px 0}
-summary:hover{opacity:.8}
-summary .a{color:#005a1a;transition:color .2s}
-details[open] .a{color:#00ff41}
-.detail{padding:4px 0 12px 20px;border-left:1px solid rgba(0,90,26,.3);margin-left:4px}
-.detail p,.detail li{font-size:12px;line-height:1.7;color:rgba(192,192,192,.7);margin-bottom:4px}
-.detail li{list-style:none}
-.detail li::before{content:"- ";color:#005a1a}
-.detail a{color:#00ff41;text-decoration:none}
-.detail a:hover{text-decoration:underline}
+.tag{display:inline-block;padding:1px 7px;border:1px solid rgba(0,90,26,.25);border-radius:3px;font-size:10px;color:rgba(192,192,192,.4);margin-right:3px;margin-bottom:3px}
 
-h2{color:#00ff41;font-size:13px;font-weight:600;margin-top:32px;margin-bottom:8px}
-h2::before{content:"# ";color:#005a1a}
-
-.contact{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-.contact a{font-size:12px;color:rgba(192,192,192,.6);text-decoration:none;padding:4px 10px;border:1px solid rgba(0,90,26,.3);border-radius:4px;transition:color .3s,border-color .3s}
+.contact{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.contact a{font-size:12px;color:rgba(192,192,192,.5);text-decoration:none;padding:4px 10px;border:1px solid rgba(0,90,26,.25);border-radius:4px;transition:color .3s,border-color .3s}
 .contact a:hover{color:#00ff41;border-color:rgba(0,255,65,.4)}
 
-.footer{text-align:center;margin-top:60px;padding-bottom:40px;color:#005a1a;font-size:11px}
+.contrib-img{width:100%;filter:brightness(.9) contrast(1.1);border-radius:4px;margin-top:4px}
 
-.contrib-img{width:100%;filter:brightness(.9) contrast(1.1);border-radius:6px}
+.footer{text-align:center;margin-top:32px;color:#333;font-size:11px}
+
+/* ── pixelated photo ── */
+.photo-wrap{display:inline-block;border:1px solid rgba(0,90,26,.2);border-radius:4px;overflow:hidden;vertical-align:middle;margin-right:12px;width:80px;height:80px;background:#0a0a0a}
+.photo-wrap img{width:100%;height:100%;object-fit:cover;image-rendering:pixelated;image-rendering:crisp-edges}
+.photo-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#00ff41;font-size:28px;font-weight:700;background:#0a0a0a}
+
+@media(max-width:600px){body{padding:10px}.body{padding:16px 14px 24px}}
 </style>
 </head>
 <body>
-<div class="wrap">
 
-<pre>
+<div class="terminal">
+  <div class="title-bar">
+    <div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
+    <div class="title-text">aly@dhedhialy:~/portfolio</div>
+  </div>
 
+  <div class="body">
+
+    <div class="line"><span class="dim">⏎</span></div>
+
+    <pre>
   _____                                                         _____
 ( ___ )-------------------------------------------------------( ___ )
  |   |                                                         |   |
@@ -63,91 +93,111 @@ h2::before{content:"# ";color:#005a1a}
  |   | /_/   \_\_____|_|   |____/|_| |_|_____|____/|_| |_|___| |   |
  |___|                                                         |___|
 (_____)-------------------------------------------------------(_____)
+    </pre>
 
-</pre>
+    <div class="line"><span class="host">aly</span><span class="dim">@</span><span class="host">dhedhialy</span><span class="dim">:</span><span class="path">~</span><span class="dim">$</span> <span class="g">whoami</span></div>
 
-<p style="margin-bottom:4px">SWE, developing AI systems, interested in how AI can be applied to solving healthcare issues.</p>
-<p class="m" style="font-size:11px">compbio @ MIT · building Mantis AI</p>
+    <div class="line" style="margin-top:4px">
+      <div class="photo-wrap">
+        <div class="photo-placeholder">AD</div>
+      </div>
+      <span style="vertical-align:middle">
+        <span class="g" style="font-size:16px;font-weight:700">aly dhedhi</span><br/>
+        <span class="t" style="font-size:12px;">SWE · compbio @ MIT · building Mantis AI</span><br/>
+        <span style="font-size:11px;color:rgba(192,192,192,.5)">
+          interested in how AI can be applied to solving healthcare issues
+        </span>
+      </span>
+    </div>
 
-<!-- ─── PROJECTS ─── -->
-<h2>projects</h2>
+    <div class="line" style="margin-top:4px">
+      <span class="dim">contributing to:</span>
+      <span class="tag">MIT Critical Data</span>
+      <span class="tag">Kellis Lab</span>
+      <span class="tag">ponytail</span>
+      <span class="tag">opencode</span>
+    </div>
 
-<details>
-  <summary><span class="a">&gt;</span> Mantis AI</summary>
-  <div class="detail">
-    <p>Fixing bugs, applying <span class="g">rl-healthcare-actions</span> into the platform.</p>
+    <div class="section-title">projects</div>
+
+    <details>
+      <summary><span class="arrow">&gt;</span> Mantis AI</summary>
+      <div class="detail-body">
+        <p>Bug fixes, integrating <span class="g">rl-healthcare-actions</span> into the platform.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="arrow">&gt;</span> ponytail</summary>
+      <div class="detail-body">
+        <p>General contributions to the opencode ponytail skill — lazy, efficient coding mode.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="arrow">&gt;</span> TB Resistance Discovery <span class="m">— Kellis Lab, MIT</span></summary>
+      <div class="detail-body">
+        <p>XGBoost pipeline forecasting drug-resistant mutations in <em>M. tuberculosis</em> — <span class="g">0.971 AUROC</span>. Integrated AlphaFold structural features + drug-pocket coordinates → ranked 44,016 variants. Validated against 12,287 CRYPTIC isolates. Discovered novel candidate mechanism (<span class="g">gyrB Q538L</span>) via docking.</p>
+        <p>First-author paper in prep. <a href="https://github.com/DHEDHiAly/tb-resistance-discovery">github</a></p>
+        <div><span class="tag">XGBoost</span><span class="tag">AlphaFold</span><span class="tag">docking</span><span class="tag">M. tb</span></div>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="arrow">&gt;</span> ICU Mortality Prediction <span class="m">— IEEE CIBCB 2026</span></summary>
+      <div class="detail-body">
+        <p>MIMIC-IV pipeline: K-Means phenotyping + gradient boosting. Cluster-augmented representations → <span class="g">AUROC 0.869</span>. First-author paper accepted at IEEE CIBCB 2026.</p>
+        <div><span class="tag">MIMIC-IV</span><span class="tag">K-Means</span><span class="tag">IEEE</span></div>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="arrow">&gt;</span> BBB Peptide Design <span class="m">— IEEE CIBCB 2026</span></summary>
+      <div class="detail-body">
+        <p>In silico pipeline for BBB-penetrant peptides targeting EGFRvIII in glioblastoma. Top cyclized Angiopep-2/GE11 candidate via structural prediction + docking. First-author, IEEE CIBCB 2026.</p>
+        <div><span class="tag">peptide</span><span class="tag">EGFRvIII</span><span class="tag">glioblastoma</span></div>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="arrow">&gt;</span> Clinical Bias in Guidelines <span class="m">— MIT Critical Data</span></summary>
+      <div class="detail-body">
+        <p>Pipeline parsing guideline DOIs, extracting cited-study demographics to measure representation gaps. Automated retrieval + demographic extraction + visualization.</p>
+        <div><span class="tag">NLP</span><span class="tag">clinical bias</span></div>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="arrow">&gt;</span> Patient Trajectory Modeling <span class="m">— MIT CSAIL</span></summary>
+      <div class="detail-body">
+        <p>Multimodal embedding (labs + text) + K-Means → latent clinical states from MIMIC-IV. Trajectory features across millions of steps. Mentored by Manolis Kellis.</p>
+        <div><span class="tag">embeddings</span><span class="tag">MIMIC-IV</span><span class="tag">CSAIL</span></div>
+      </div>
+    </details>
+
+    <div class="section-title">community</div>
+    <div class="line t" style="font-size:13px">
+      Raised <span class="g">$23,000+</span> for <span class="g">The Citizens Foundation</span> — funding education for underprivileged kids in Pakistan. Top fundraiser twice. Eagle Scout (in progress). Muay Thai, tennis, piano (Trinity Grade 5).
+    </div>
+
+    <div class="section-title">contributions</div>
+    <img class="contrib-img" src="https://ghchart.rshah.org/00ff41/DHEDHiAly" alt="contribution chart" />
+
+    <div class="section-title">contact</div>
+    <div class="contact">
+      <a href="mailto:alyd@mit.edu">alyd@mit.edu</a>
+      <a href="mailto:alydhedhi@gmail.com">alydhedhi@gmail.com</a>
+      <a href="https://github.com/DHEDHiAly" target="_blank">github</a>
+      <a href="https://www.linkedin.com/in/aly-dhedhi-673228350" target="_blank">linkedin</a>
+      <a href="https://orcid.org/0009-0006-5416-1715" target="_blank">orcid</a>
+      <a href="https://scholar.google.com/citations?user=YOUR_SCHOLAR_ID" target="_blank">google scholar</a>
+      <a href="tel:+19546613571">(954) 661-3571</a>
+    </div>
+
+    <div class="footer"><span class="dim">aly dhedhi</span> © 2026</div>
+
   </div>
-</details>
-
-<details>
-  <summary><span class="a">&gt;</span> ponytail</summary>
-  <div class="detail">
-    <p>General contributions to the opencode ponytail skill — the laziest, most efficient coding mode that exists.</p>
-  </div>
-</details>
-
-<details>
-  <summary><span class="a">&gt;</span> TB Resistance Discovery <span class="m">(Kellis Lab · MIT)</span></summary>
-  <div class="detail">
-    <p>Built a predictive ML pipeline (XGBoost) to forecast unobserved drug-resistant mutations in <em>M. tuberculosis</em> — <span class="g">0.971 AUROC</span>. Integrated population homoplasy data with AlphaFold structural features and drug-pocket spatial coordinates to rank <span class="g">44,016</span> accessible variants. Validated against <span class="g">12,287</span> CRYPTIC clinical isolates. Discovered a literature-novel candidate mechanism (<span class="g">gyrB Q538L</span>) via molecular docking.</p>
-    <p style="margin-top:6px">First-author paper in preparation. <a href="https://github.com/DHEDHiAly/tb-resistance-discovery">github</a></p>
-    <div style="margin-top:4px"><span class="tag">XGBoost</span><span class="tag">AlphaFold</span><span class="tag">molecular docking</span><span class="tag">M. tuberculosis</span></div>
-  </div>
-</details>
-
-<details>
-  <summary><span class="a">&gt;</span> ICU Mortality Prediction <span class="m">(IEEE CIBCB 2026)</span></summary>
-  <div class="detail">
-    <p>MIMIC-IV pipeline combining K-Means phenotype discovery with gradient-boosted learning. Cluster-augmented representations hit <span class="g">AUROC 0.869</span>, AUPRC 0.302. First-author paper accepted to IEEE CIBCB 2026.</p>
-    <p style="margin-top:4px"><span class="tag">MIMIC-IV</span><span class="tag">K-Means</span><span class="tag">XGBoost</span><span class="tag">IEEE</span></p>
-  </div>
-</details>
-
-<details>
-  <summary><span class="a">&gt;</span> BBB-Penetrant Peptide Design <span class="m">(IEEE CIBCB 2026)</span></summary>
-  <div class="detail">
-    <p>Automated in silico pipeline for designing BBB-penetrant peptides targeting EGFRvIII in glioblastoma. Top-ranked cyclized Angiopep-2/GE11 fusion candidate identified through structural prediction, docking, and interface analysis. First-author paper accepted to IEEE CIBCB 2026.</p>
-    <p style="margin-top:4px"><span class="tag">peptide design</span><span class="tag">EGFRvIII</span><span class="tag">glioblastoma</span><span class="tag">IEEE</span></p>
-  </div>
-</details>
-
-<details>
-  <summary><span class="a">&gt;</span> Clinical Bias in Guidelines <span class="m">(MIT Critical Data)</span></summary>
-  <div class="detail">
-    <p>Pipeline that analyzes clinical guideline DOIs, extracts cited studies, and pulls participant demographics to measure representation gaps in clinical research. Automated citation retrieval, demographic extraction, and evidence-base visualization.</p>
-    <p style="margin-top:4px"><span class="tag">NLP</span><span class="tag">clinical bias</span><span class="tag">guidelines</span></p>
-  </div>
-</details>
-
-<details>
-  <summary><span class="a">&gt;</span> Patient Trajectory Modeling <span class="m">(MIT CSAIL)</span></summary>
-  <div class="detail">
-    <p>Two-stage pipeline: multimodal embedding (scaled labs + diagnosis text) + K-Means clustering to derive latent clinical states from MIMIC-IV. Engineered trajectory-level features across millions of temporal steps. Mentored under Manolis Kellis.</p>
-    <p style="margin-top:4px"><span class="tag">MIMIC-IV</span><span class="tag">embeddings</span><span class="tag">K-Means</span><span class="tag">CSAIL</span></p>
-  </div>
-</details>
-
-<!-- ─── COMMUNITY ─── -->
-<h2>community</h2>
-<p style="font-size:12px;line-height:1.7;color:rgba(192,192,192,.7)">
-Raised <span class="g">$23,000+</span> for <span class="g">The Citizens Foundation</span> → education for underprivileged kids in Pakistan. Top fundraiser twice. Eagle Scout (in progress). Muay Thai, tennis, piano (Trinity Grade 5).
-</p>
-
-<!-- ─── CONTRIBUTIONS ─── -->
-<h2>contributions</h2>
-<img class="contrib-img" src="https://ghchart.rshah.org/00ff41/DHEDHiAly" alt="contribution chart" />
-
-<!-- ─── CONTACT ─── -->
-<h2>contact</h2>
-<div class="contact">
-  <a href="mailto:alyd@mit.edu">alyd@mit.edu</a>
-  <a href="mailto:alydhedhi@gmail.com">alydhedhi@gmail.com</a>
-  <a href="https://github.com/DHEDHiAly" target="_blank">github</a>
-  <a href="https://www.linkedin.com/in/aly-dhedhi-673228350" target="_blank">linkedin</a>
 </div>
 
-<div class="footer"><span class="g">aly dhedhi</span> © 2026</div>
-
-</div>
 </body>
 </html>
