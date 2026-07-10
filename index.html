@@ -65,7 +65,7 @@ details[open] .arrow{color:#00ff41}
 /* ── pixelated photo ── */
 .photo-wrap{display:inline-block;border:1px solid rgba(0,90,26,.2);border-radius:4px;overflow:hidden;vertical-align:middle;margin-right:12px;width:80px;height:80px;background:#0a0a0a}
 .photo-wrap img{width:100%;height:100%;object-fit:cover;image-rendering:pixelated;image-rendering:crisp-edges}
-.photo-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#00ff41;font-size:28px;font-weight:700;background:#0a0a0a}
+.photo-placeholder{width:100%;height:100%;align-items:center;justify-content:center;color:#00ff41;font-size:28px;font-weight:700;background:#0a0a0a}
 
 @media(max-width:600px){body{padding:10px}.body{padding:16px 14px 24px}}
 </style>
@@ -99,7 +99,8 @@ details[open] .arrow{color:#00ff41}
 
     <div class="line" style="margin-top:4px">
       <div class="photo-wrap">
-        <div class="photo-placeholder">AD</div>
+        <img src="photos/headshot.jpg" alt="aly dhedhi" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <div class="photo-placeholder" style="display:none">AD</div>
       </div>
       <span style="vertical-align:middle">
         <span class="g" style="font-size:16px;font-weight:700">aly dhedhi</span><br/>
