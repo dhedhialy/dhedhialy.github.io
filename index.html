@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Aly Dhedhi</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -15,182 +14,169 @@ body{background:#0a0a0a;color:#c0c0c0;font-family:'JetBrains Mono',monospace;ove
 ::-webkit-scrollbar-track{background:#0a0a0a}
 ::-webkit-scrollbar-thumb{background:#005a1a;border-radius:3px}
 
-.matrix-container{position:fixed;inset:0;z-index:0;background:#000;display:flex}
-.matrix-pattern{position:relative;width:100%;height:100%}
-.matrix-column{position:absolute;top:-100%;width:20px;height:100%;font-size:16px;line-height:18px;font-weight:700;animation:matrix-fall linear infinite;white-space:nowrap}
-.matrix-column::before{content:"welcomewelcomewelcomewelcomewelcomewelcomewelcomewelcomewelcomewelcomewelcomewelcomewelcomewelcomewelcome";position:absolute;top:0;left:0;background:linear-gradient(to bottom,#fff 0%,#fff 5%,#00ff41 10%,#00ff41 20%,#00dd33 30%,#00bb22 40%,#009911 50%,#007700 60%,#005500 70%,#003300 80%,rgba(0,255,65,.5) 90%,transparent 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;writing-mode:vertical-lr;letter-spacing:2px;text-rendering:optimizeLegibility}
-.matrix-column:nth-child(1){left:0;animation-delay:-2.5s;animation-duration:3s;opacity:.3}
-.matrix-column:nth-child(2){left:25px;animation-delay:-3.2s;animation-duration:4s;opacity:.15}
-.matrix-column:nth-child(3){left:50px;animation-delay:-1.8s;animation-duration:2.5s;opacity:.25}
-.matrix-column:nth-child(4){left:75px;animation-delay:-2.9s;animation-duration:3.5s;opacity:.1}
-.matrix-column:nth-child(5){left:100px;animation-delay:-1.5s;animation-duration:3s;opacity:.2}
-.matrix-column:nth-child(6){left:125px;animation-delay:-3.8s;animation-duration:4.5s;opacity:.1}
-.matrix-column:nth-child(7){left:150px;animation-delay:-2.1s;animation-duration:2.8s;opacity:.3}
-.matrix-column:nth-child(8){left:175px;animation-delay:-2.7s;animation-duration:3.2s;opacity:.15}
-.matrix-column:nth-child(9){left:200px;animation-delay:-3.4s;animation-duration:3.8s;opacity:.2}
-.matrix-column:nth-child(10){left:225px;animation-delay:-1.9s;animation-duration:2.7s;opacity:.1}
-.matrix-column:nth-child(11){left:250px;animation-delay:-3.6s;animation-duration:4.2s;opacity:.25}
-.matrix-column:nth-child(12){left:275px;animation-delay:-2.3s;animation-duration:3.1s;opacity:.15}
-.matrix-column:nth-child(13){left:300px;animation-delay:-3.1s;animation-duration:3.6s;opacity:.1}
-.matrix-column:nth-child(14){left:325px;animation-delay:-2.6s;animation-duration:2.9s;opacity:.3}
-.matrix-column:nth-child(15){left:350px;animation-delay:-3.7s;animation-duration:4.1s;opacity:.15}
-.matrix-column:nth-child(16){left:375px;animation-delay:-2.8s;animation-duration:3.3s;opacity:.2}
-.matrix-column:nth-child(17){left:400px;animation-delay:-3.3s;animation-duration:3.7s;opacity:.1}
-.matrix-column:nth-child(18){left:425px;animation-delay:-2.2s;animation-duration:2.6s;opacity:.25}
-.matrix-column:nth-child(19){left:450px;animation-delay:-3.9s;animation-duration:4.3s;opacity:.15}
-.matrix-column:nth-child(20){left:475px;animation-delay:-2.4s;animation-duration:2.8s;opacity:1!important;width:40px;font-size:24px;line-height:28px;z-index:2}
-.matrix-column:nth-child(20)::before{font-size:24px;line-height:28px;letter-spacing:4px}
-.matrix-column:nth-child(21){left:500px;animation-delay:-1.7s;animation-duration:2.4s;opacity:.1}
-.matrix-column:nth-child(22){left:525px;animation-delay:-3.5s;animation-duration:3.9s;opacity:.3}
-.matrix-column:nth-child(23){left:550px;animation-delay:-2s;animation-duration:3s;opacity:.15}
-.matrix-column:nth-child(24){left:575px;animation-delay:-4s;animation-duration:4.4s;opacity:.2}
-.matrix-column:nth-child(25){left:600px;animation-delay:-1.6s;animation-duration:2.3s;opacity:.1}
-.matrix-column:nth-child(26){left:625px;animation-delay:-3s;animation-duration:3.5s;opacity:.25}
-.matrix-column:nth-child(27){left:650px;animation-delay:-3.8s;animation-duration:4s;opacity:.15}
-.matrix-column:nth-child(28){left:675px;animation-delay:-2.5s;animation-duration:2.8s;opacity:.1}
-.matrix-column:nth-child(29){left:700px;animation-delay:-3.2s;animation-duration:3.6s;opacity:.3}
-.matrix-column:nth-child(30){left:725px;animation-delay:-2.7s;animation-duration:3.2s;opacity:.15}
-.matrix-column:nth-child(31){left:750px;animation-delay:-1.8s;animation-duration:2.7s;opacity:.2}
-.matrix-column:nth-child(32){left:775px;animation-delay:-3.6s;animation-duration:4.1s;opacity:.1}
-.matrix-column:nth-child(33){left:800px;animation-delay:-2.1s;animation-duration:3.1s;opacity:.25}
-.matrix-column:nth-child(34){left:825px;animation-delay:-3.4s;animation-duration:3.7s;opacity:.15}
-.matrix-column:nth-child(35){left:850px;animation-delay:-2.8s;animation-duration:2.9s;opacity:.2}
-.matrix-column:nth-child(36){left:875px;animation-delay:-3.7s;animation-duration:4.2s;opacity:.1}
-.matrix-column:nth-child(37){left:900px;animation-delay:-2.3s;animation-duration:3.3s;opacity:.3}
-.matrix-column:nth-child(38){left:925px;animation-delay:-1.9s;animation-duration:2.5s;opacity:.15}
-.matrix-column:nth-child(39){left:950px;animation-delay:-3.5s;animation-duration:3.8s;opacity:.2}
-.matrix-column:nth-child(40){left:975px;animation-delay:-2.6s;animation-duration:3.4s;opacity:.1}
-@keyframes matrix-fall{0%{transform:translateY(-10%);opacity:1}100%{transform:translateY(200%);opacity:0}}
-@media(max-width:768px){.matrix-column{font-size:14px;line-height:16px;width:18px}.matrix-column:nth-child(20){font-size:20px;line-height:24px;width:30px}}
-@media(max-width:480px){.matrix-column{font-size:12px;line-height:14px;width:15px}.matrix-column:nth-child(20){font-size:16px;line-height:20px;width:24px}}
+.prompt{color:#00ff41}
+.dim{color:#005a1a}
+.text{color:rgba(192,192,192,.8)}
+.muted{color:rgba(192,192,192,.5)}
+
+section{max-width:720px;margin:0 auto;padding:40px 20px}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-bottom:0}
+
+h1{color:#00ff41;font-size:clamp(1.5rem,4vw,2.2rem);font-weight:700}
+.sub{color:rgba(192,192,192,.5);font-size:13px;margin-top:6px}
+
+.bio{font-size:13px;line-height:1.8;margin-top:16px}
+.bio a{color:#00ff41;text-decoration:none}
+.bio a:hover{text-decoration:underline}
+
+.tag{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border:1px solid rgba(0,90,26,.4);border-radius:4px;font-size:11px;color:rgba(192,192,192,.6);transition:color .3s,border-color .3s}
+.tag:hover{color:#00ff41;border-color:rgba(0,255,65,.4)}
+
+h2{color:#00ff41;font-size:14px;font-weight:600;margin-bottom:12px;margin-top:40px}
+h2::before{content:"# ";color:#005a1a}
+
+.project{margin-bottom:20px}
+.project-title{color:#00ff41;font-size:13px;font-weight:600}
+.project-meta{color:rgba(192,192,192,.4);font-size:11px;margin-top:2px}
+.project-desc{font-size:12px;line-height:1.7;margin-top:6px;color:rgba(192,192,192,.7)}
+.project-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.project-tags span{padding:2px 8px;border:1px solid rgba(0,90,26,.3);border-radius:3px;font-size:10px;color:rgba(192,192,192,.5)}
+
+details{margin-bottom:12px;cursor:pointer}
+summary{color:#00ff41;font-size:13px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px}
+summary .arrow{color:#005a1a;transition:color .2s}
+details[open] .arrow{color:#00ff41}
+.detail-body{padding:8px 0 12px 20px}
+.detail-body p,.detail-body li{font-size:12px;line-height:1.7;color:rgba(192,192,192,.7);margin-bottom:4px}
+.detail-body li{list-style:none}
+.detail-body li::before{content:"- ";color:#005a1a}
+
+.contrib-img{width:100%;filter:brightness(.9) contrast(1.1);border-radius:6px}
+
+.contact{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.contact a{font-size:12px;color:rgba(192,192,192,.6);text-decoration:none;padding:6px 12px;border:1px solid rgba(0,90,26,.3);border-radius:4px;transition:color .3s,border-color .3s}
+.contact a:hover{color:#00ff41;border-color:rgba(0,255,65,.4)}
+
+.footer{text-align:center;margin-top:60px;padding-bottom:40px}
+.footer p{color:#005a1a;font-size:11px}
 </style>
 </head>
 <body>
 
-<div class="matrix-container"><div class="matrix-pattern"></div></div>
-
-<section style="position:relative;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:0 16px;text-align:center">
+<!-- ─── HERO ─── -->
+<section class="hero">
   <div>
-    <h1 id="name" style="font-size:clamp(2.5rem,8vw,5rem);font-weight:700;font-family:'JetBrains Mono',monospace;color:#00ff41;margin-bottom:8px;opacity:0;transition:opacity 1s">aly dhedhi</h1>
-    <p style="font-size:13px;font-family:'JetBrains Mono',monospace;color:rgba(192,192,192,.5)"><span style="color:#005a1a">$</span> ./build --healthcare-ai --drug-discovery</p>
-  </div>
-  <div id="scrollPrompt" onclick="document.getElementById('content').scrollIntoView({behavior:'smooth'})" style="margin-top:80px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;opacity:0;transition:opacity 1s">
-    <span style="color:#005a1a;font-size:11px;font-family:'JetBrains Mono',monospace;animation:pulse-glow 2s infinite">$ scroll to continue...</span>
-    <div style="width:14px;height:26px;border:2px solid #005a1a;border-radius:10px;display:flex;justify-content:center;padding:3px"><div style="width:3px;height:6px;background:#00ff41;border-radius:4px;animation:bounce 1.5s infinite"></div></div>
+    <p class="dim" style="font-size:12px"><span class="prompt">$</span> whoami</p>
+    <h1>aly dhedhi</h1>
+    <p class="sub"><span class="dim">$</span> ./status --compbio --mantis-ai</p>
+
+    <div class="bio">
+      <p>
+        high schooler doing compbio at <span class="prompt">MIT</span>.
+        building <span class="prompt">Mantis AI</span> — contributing to
+        <a href="https://github.com/lpm0073/critical-data">CRIT Data</a>,
+        <a href="https://github.com/lpm0073">Kellis Lab</a>,
+        <span class="prompt">ponytail</span>, and whatever else breaks.
+      </p>
+      <p style="margin-top:8px">
+        <span class="tag">tb-resistance-discovery</span>
+        <span class="tag">ICU-mortality-prediction</span>
+        <span class="tag">BBB-peptide-design</span>
+        <span class="tag">RADAR</span>
+        <span class="tag">Cartograph</span>
+      </p>
+    </div>
   </div>
 </section>
 
-<section id="content" style="position:relative;z-index:10;padding:0 16px 120px"><div style="max-width:720px;margin:0 auto">
+<section>
 
-<div class="reveal" style="margin-bottom:16px">
-  <div style="color:#005a1a;font-size:11px;margin-bottom:4px;user-select:none"><span style="color:#00ff41">$</span> ~/README.md</div>
-  <div style="padding-left:16px;border-left:2px solid rgba(0,90,26,.4)">
-    <p style="line-height:1.7;margin-bottom:8px">Software engineer and researcher building AI systems that help clinicians and researchers navigate complex biomedical data. My work sits at the intersection of engineering rigor and translational machine learning.</p>
-    <p style="line-height:1.7;margin-bottom:8px">I focus on healthcare AI, multimodal representation learning, drug discovery, single-cell analysis, and clinical decision support. Across projects, I prioritize traceability, reproducibility, and practical utility for scientific teams.</p>
-    <p style="line-height:1.7;margin-bottom:8px">Especially interested in translating ML research into tools that improve scientific reasoning and patient outcomes — with particular interest in medical oncology and translational medicine.</p>
+<!-- ─── PROJECTS ─── -->
+<h2>projects</h2>
+
+<div class="project">
+  <div class="project-title">Drug-Resistance Forecasting (Kellis Lab · MIT)</div>
+  <div class="project-meta">May 2026 – Present · XGBoost · AlphaFold · molecular docking</div>
+  <div class="project-desc">
+    Built a predictive pipeline using XGBoost to forecast unobserved drug-resistant mutations in <em>M. tuberculosis</em> (0.971 AUROC). Integrated population homoplasy data with AlphaFold structural features and drug-pocket coordinates to rank 44,016 variants. Validated against 12,287 CRYPTIC clinical isolates; discovered a literature-novel candidate mechanism (gyrB Q538L). First-author paper in prep.
+  </div>
+  <div class="project-tags">
+    <span>XGBoost</span><span>AlphaFold</span><span>molecular docking</span><span>tb-resistance</span>
   </div>
 </div>
 
-<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:32px">
-  <div class="reveal" style="border:1px solid rgba(0,90,26,.3);border-radius:8px;padding:16px;text-align:center;background:rgba(10,10,10,.6)"><div style="font-size:22px;font-weight:700;background:linear-gradient(to bottom,#00ff41,#00bb22);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">2,922</div><div style="font-size:10px;color:#005a1a;margin-top:4px;text-transform:uppercase;letter-spacing:1px">Commits</div></div>
-  <div class="reveal" style="border:1px solid rgba(0,90,26,.3);border-radius:8px;padding:16px;text-align:center;background:rgba(10,10,10,.6)"><div style="font-size:22px;font-weight:700;background:linear-gradient(to bottom,rgba(0,255,65,.8),#00bb22);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">70+</div><div style="font-size:10px;color:#005a1a;margin-top:4px;text-transform:uppercase;letter-spacing:1px">Repos</div></div>
-  <div class="reveal" style="border:1px solid rgba(0,90,26,.3);border-radius:8px;padding:16px;text-align:center;background:rgba(10,10,10,.6)"><div style="font-size:22px;font-weight:700;background:linear-gradient(to bottom,rgba(0,255,65,.6),#00bb22);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">17%</div><div style="font-size:10px;color:#005a1a;margin-top:4px;text-transform:uppercase;letter-spacing:1px">PRs</div></div>
-  <div class="reveal" style="border:1px solid rgba(0,90,26,.3);border-radius:8px;padding:16px;text-align:center;background:rgba(10,10,10,.6)"><div style="font-size:22px;font-weight:700;background:linear-gradient(to bottom,rgba(0,255,65,.4),#00bb22);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">4%</div><div style="font-size:10px;color:#005a1a;margin-top:4px;text-transform:uppercase;letter-spacing:1px">Reviews</div></div>
-</div>
-
-<div class="reveal" style="margin-top:48px;margin-bottom:16px">
-  <div style="color:#005a1a;font-size:11px;margin-bottom:4px;user-select:none"><span style="color:#00ff41">$</span> ~/focus-areas</div>
-  <div style="padding-left:16px;border-left:2px solid rgba(0,90,26,.4)">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-      <div style="display:flex;align-items:flex-start;gap:10px"><span style="color:#00ff41;margin-top:3px;flex-shrink:0">◆</span><span style="color:rgba(192,192,192,.8);font-size:13px">Medical Oncology — translating ML research into clinical tools</span></div>
-      <div style="display:flex;align-items:flex-start;gap:10px"><span style="color:#00ff41;margin-top:3px;flex-shrink:0">◆</span><span style="color:rgba(192,192,192,.8);font-size:13px">Drug Discovery — repurposing, representation learning, single-cell analysis</span></div>
-      <div style="display:flex;align-items:flex-start;gap:10px"><span style="color:#00ff41;margin-top:3px;flex-shrink:0">◆</span><span style="color:rgba(192,192,192,.8);font-size:13px">Healthcare AI — multimodal learning, clinical decision support</span></div>
-      <div style="display:flex;align-items:flex-start;gap:10px"><span style="color:#00ff41;margin-top:3px;flex-shrink:0">◆</span><span style="color:rgba(192,192,192,.8);font-size:13px">Privacy-Preserving AI — secure and responsible ML in healthcare</span></div>
-    </div>
+<div class="project">
+  <div class="project-title">Mantis AI</div>
+  <div class="project-meta">2026 · full-stack AI</div>
+  <div class="project-desc">
+    Building it.
   </div>
 </div>
 
-<div class="reveal" style="margin-top:48px;margin-bottom:16px">
-  <div style="color:#005a1a;font-size:11px;margin-bottom:4px;user-select:none"><span style="color:#00ff41">$</span> ~/projects</div>
-  <div style="padding-left:16px;border-left:2px solid rgba(0,90,26,.4)">
-    <details style="margin-bottom:16px;cursor:pointer">
-      <summary style="color:#00ff41;font-family:'JetBrains Mono',monospace;cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px"><span style="color:#005a1a">&gt;</span> Cartograph</summary>
-      <div style="margin-top:12px;margin-left:24px">
-        <p style="color:rgba(192,192,192,.7);font-size:13px;margin-bottom:8px">A module that transforms multimodal biomedical data into interactive knowledge maps. Built at MIT CSAIL.</p>
-        <ul style="list-style:none;padding:0">
-          <li style="color:rgba(192,192,192,.6);font-size:12px;margin-bottom:4px;display:flex;align-items:flex-start;gap:8px"><span style="color:#005a1a">-</span> Standardized heterogeneous biomedical inputs into immutable Evidence Objects</li>
-          <li style="color:rgba(192,192,192,.6);font-size:12px;margin-bottom:4px;display:flex;align-items:flex-start;gap:8px"><span style="color:#005a1a">-</span> Constructed evidence timelines for traceability and reproducibility</li>
-          <li style="color:rgba(192,192,192,.6);font-size:12px;margin-bottom:4px;display:flex;align-items:flex-start;gap:8px"><span style="color:#005a1a">-</span> Aligned embedding spaces spanning hypotheses, evidence, uncertainty, and opportunity landscapes</li>
-          <li style="color:rgba(192,192,192,.6);font-size:12px;margin-bottom:4px;display:flex;align-items:flex-start;gap:8px"><span style="color:#005a1a">-</span> Identified drug repurposing opportunities via shared representation spaces</li>
-          <li style="color:rgba(192,192,192,.6);font-size:12px;margin-bottom:4px;display:flex;align-items:flex-start;gap:8px"><span style="color:#005a1a">-</span> Developed deterministic agentic workflows reducing hallucinations</li>
-        </ul>
-      </div>
-    </details>
-    <details style="cursor:pointer">
-      <summary style="color:#00ff41;font-family:'JetBrains Mono',monospace;cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px"><span style="color:#005a1a">&gt;</span> RADAR</summary>
-      <div style="margin-top:12px;margin-left:24px">
-        <p style="color:rgba(192,192,192,.7);font-size:13px;margin-bottom:8px">Pipelines that extract participant demographics from clinical journals and evaluate studies for clinical bias.</p>
-        <ul style="list-style:none;padding:0">
-          <li style="color:rgba(192,192,192,.6);font-size:12px;margin-bottom:4px;display:flex;align-items:flex-start;gap:8px"><span style="color:#005a1a">-</span> Large-scale assessment of representation in clinical research populations</li>
-        </ul>
-      </div>
-    </details>
+<div class="project">
+  <div class="project-title">Clinical Bias in Guidelines (MIT Critical Data)</div>
+  <div class="project-meta">March 2026 – Present · NLP · pipelines</div>
+  <div class="project-desc">
+    Pipeline that parses clinical guideline DOIs, extracts cited studies, and pulls participant demographics to measure representation gaps. Automated citation retrieval, demographic extraction, and evidence-base visualization.
   </div>
+  <div class="project-tags"><span>NLP</span><span>RADAR</span><span>clinical bias</span></div>
 </div>
 
-<div class="reveal" style="margin-top:48px;margin-bottom:16px">
-  <div style="color:#005a1a;font-size:11px;margin-bottom:4px;user-select:none"><span style="color:#00ff41">$</span> ~/community</div>
-  <div style="padding-left:16px;border-left:2px solid rgba(0,90,26,.4)">
-    <div style="display:flex;align-items:flex-start;gap:10px">
-      <span style="color:#00ff41;flex-shrink:0">♥</span>
-      <p style="color:rgba(192,192,192,.7);font-size:13px;line-height:1.7">For the past four years, supported fundraising for <strong style="color:#00ff41">The Citizens Foundation</strong> to expand educational opportunities for underprivileged children in Pakistan. Raised more than <strong style="color:#00ff41">$21,000 USD</strong>.</p>
-    </div>
+<div class="project">
+  <div class="project-title">Hospital-Invariant ICU Representation Learning</div>
+  <div class="project-meta">March – April 2026 · MIMIC-IV · K-Means · XGBoost</div>
+  <div class="project-desc">
+    MIMIC-IV mortality prediction pipeline with K-Means phenotype discovery + gradient-boosted learning. Cluster-augmented representations achieved AUROC 0.869, AUPRC 0.302. Accepted to IEEE CIBCB 2026.
   </div>
+  <div class="project-tags"><span>MIMIC-IV</span><span>K-Means</span><span>IEEE</span></div>
 </div>
 
-<div class="reveal" style="margin-top:48px;margin-bottom:16px">
-  <div style="color:#005a1a;font-size:11px;margin-bottom:4px;user-select:none"><span style="color:#00ff41">$</span> ~/contributions</div>
-  <div style="padding-left:16px;border-left:2px solid rgba(0,90,26,.4)">
-    <div style="background:rgba(10,10,10,.4);border-radius:8px;padding:16px;border:1px solid rgba(0,90,26,.2)">
-      <img src="https://ghchart.rshah.org/00ff41/DHEDHiAly" alt="Contribution chart" style="width:100%;filter:brightness(.9) contrast(1.1)" />
-    </div>
+<div class="project">
+  <div class="project-title">BBB-Penetrant Peptide Design for EGFRvIII</div>
+  <div class="project-meta">Nov 2025 – March 2026 · in silico · docking</div>
+  <div class="project-desc">
+    Automated pipeline for designing BBB-penetrant peptides targeting EGFRvIII in glioblastoma. Top-ranked cyclized Angiopep-2/GE11 fusion candidate identified through structural prediction and docking. Accepted to IEEE CIBCB 2026.
   </div>
+  <div class="project-tags"><span>peptide design</span><span>EGFRvIII</span><span>IEEE</span></div>
 </div>
 
-<div class="reveal" style="margin-top:64px;margin-bottom:16px">
-  <div style="color:#005a1a;font-size:11px;margin-bottom:4px;user-select:none"><span style="color:#00ff41">$</span> ~/contact</div>
-  <div style="padding-left:16px;border-left:2px solid rgba(0,90,26,.4)">
-    <div style="display:flex;flex-wrap:wrap;gap:10px">
-      <a href="https://www.linkedin.com/in/aly-dhedhi-673228350" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid rgba(0,90,26,.3);border-radius:6px;font-size:12px;font-family:'JetBrains Mono',monospace;color:rgba(192,192,192,.7);text-decoration:none;transition:color .3s,border-color .3s"><span style="color:#00ff41">$</span> LinkedIn</a>
-      <a href="mailto:alyd@mit.edu" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid rgba(0,90,26,.3);border-radius:6px;font-size:12px;font-family:'JetBrains Mono',monospace;color:rgba(192,192,192,.7);text-decoration:none;transition:color .3s,border-color .3s"><span style="color:#00ff41">$</span> Professional Email</a>
-      <a href="mailto:alydhedhi@gmail.com" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid rgba(0,90,26,.3);border-radius:6px;font-size:12px;font-family:'JetBrains Mono',monospace;color:rgba(192,192,192,.7);text-decoration:none;transition:color .3s,border-color .3s"><span style="color:#00ff41">$</span> Personal Email</a>
-      <a href="https://github.com/DHEDHiAly" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid rgba(0,90,26,.3);border-radius:6px;font-size:12px;font-family:'JetBrains Mono',monospace;color:rgba(192,192,192,.7);text-decoration:none;transition:color .3s,border-color .3s"><span style="color:#00ff41">$</span> GitHub</a>
-    </div>
+<details>
+  <summary><span class="arrow">&gt;</span> Cartograph</summary>
+  <div class="detail-body">
+    <p>Multimodal biomedical data → interactive knowledge maps. Built within an MIT CSAIL initiative. Standardized evidence objects, embedding alignment across hypotheses and uncertainty landscapes, drug repurposing via shared representation spaces, deterministic agentic workflows.</p>
   </div>
+</details>
+
+<details>
+  <summary><span class="arrow">&gt;</span> Patient Trajectory Modeling (CSAIL)</summary>
+  <div class="detail-body">
+    <p>Two-stage pipeline: multimodal embedding (scaled labs + diagnosis text) + K-Means clustering to derive latent clinical states from MIMIC-IV. Engineered trajectory-level features, analyzed ~millions of temporal steps. Mentored under Manolis Kellis.</p>
+  </div>
+</details>
+
+<!-- ─── COMMUNITY ─── -->
+<h2>community</h2>
+<p style="font-size:12px;line-height:1.7;color:rgba(192,192,192,.7)">
+  Raised <span class="prompt">$23,000+</span> for <span class="prompt">The Citizens Foundation</span> → funds education for underprivileged kids in Pakistan. Top fundraiser twice. Also: Eagle Scout (in progress), Muay Thai, tennis, piano (Trinity Grade 5).
+</p>
+
+<!-- ─── CONTRIBUTIONS ─── -->
+<h2>contributions</h2>
+<img class="contrib-img" src="https://ghchart.rshah.org/00ff41/DHEDHiAly" alt="contribution chart" />
+
+<!-- ─── CONTACT ─── -->
+<h2>contact</h2>
+<div class="contact">
+  <a href="mailto:alyd@mit.edu">alyd@mit.edu</a>
+  <a href="mailto:alydhedhi@gmail.com">alydhedhi@gmail.com</a>
+  <a href="https://github.com/DHEDHiAly" target="_blank">github</a>
+  <a href="https://www.linkedin.com/in/aly-dhedhi-673228350" target="_blank">linkedin</a>
 </div>
 
-<div style="text-align:center;margin-top:80px">
-  <p style="color:#005a1a;font-size:11px;font-family:'JetBrains Mono',monospace"><span style="color:#00ff41">aly dhedhi</span> © 2026 — built with <span style="color:#00ff41">&lt;/\&gt;</span> and caffeine</p>
-  <p style="color:rgba(0,90,26,.5);font-size:10px;font-family:'JetBrains Mono',monospace;margin-top:4px">[system uptime: always building]</p>
+<div class="footer">
+  <p><span class="prompt">aly dhedhi</span> © 2026</p>
 </div>
 
-</div></section>
-
-<style>
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
-.reveal.show{opacity:1;transform:translateY(0)}
-@keyframes pulse-glow{0%,100%{opacity:.4}50%{opacity:1}}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
-@media(max-width:600px){div[style*="repeat(4"]{grid-template-columns:repeat(2,1fr)!important}div[style*="repeat(2"]{grid-template-columns:1fr!important}}
-</style>
-
-<script>
-(function(){const p=document.querySelector('.matrix-pattern');for(let i=1;i<=40;i++){const col=document.createElement('div');col.className='matrix-column';p.appendChild(col)}})();
-const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');obs.unobserve(e.target)}})},{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-setTimeout(()=>document.getElementById('name').style.opacity='1',2000);
-setTimeout(()=>document.getElementById('scrollPrompt').style.opacity='1',3200);
-</script>
-
+</section>
 </body>
 </html>
