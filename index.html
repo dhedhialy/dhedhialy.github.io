@@ -4,201 +4,673 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Aly Dhedhi — terminal</title>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+<meta name="description" content="Aly Dhedhi — Healthcare AI researcher at MIT CSAIL and MIT Critical Data. Pre-med, machine learning, clinical AI systems, patient trajectory modeling." />
+<meta property="og:title" content="Aly Dhedhi — Healthcare AI Researcher" />
+<meta property="og:description" content="Healthcare AI researcher at MIT CSAIL and MIT Critical Data. Pre-med, machine learning, clinical AI." />
+<meta property="og:url" content="https://dhedhialy.github.io" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://dhedhialy.github.io" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;700&display=swap" rel="stylesheet" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Aly Dhedhi",
+  "givenName": "Aly",
+  "familyName": "Dhedhi",
+  "jobTitle": "Healthcare AI Researcher",
+  "affiliation": [
+    {"@type": "Organization", "name": "MIT CSAIL"},
+    {"@type": "Organization", "name": "MIT Critical Data"}
+  ],
+  "url": "https://dhedhialy.github.io",
+  "sameAs": [
+    "https://www.linkedin.com/in/aly-dhedhi-673228350",
+    "https://github.com/DHEDHiAly",
+    "https://orcid.org/0009-0007-9255-4906",
+    "https://scholar.google.com/citations?user=w_DJ-kYAAAAJ"
+  ]
+}
+</script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#1a1a1a;color:#c0c0c0;font-family:'JetBrains Mono',monospace;font-size:14px;line-height:1.6;overflow-x:hidden;display:flex;justify-content:center;padding:20px;min-height:100vh}
-::selection{background:#00ff41;color:#0a0a0a}
-
-.terminal{max-width:900px;width:100%;background:#0d0d0d;border-radius:8px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.8);border:1px solid #2a2a2a;height:fit-content}
-
-/* ── title bar ── */
-.title-bar{background:#1c1c1c;padding:10px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #2a2a2a;user-select:none}
-.dots{display:flex;gap:7px}
-.dot{width:12px;height:12px;border-radius:50%}
-.dot.r{background:#ff5f56}
-.dot.y{background:#ffbd2e}
-.dot.g{background:#27c93f}
-.title-text{color:#666;font-size:12px;flex:1;text-align:center}
-
-/* ── body ── */
-.body{padding:24px 24px 32px;overflow-x:auto}
-
-.line{margin-bottom:6px;white-space:pre-wrap;word-break:break-word}
-
-.prompt{color:#00ff41}
-.host{color:#00ff41}
-.path{color:#569cd6}
-.dim{color:#555}
-.g{color:#00ff41}
-.m{color:rgba(192,192,192,.4);font-size:12px}
-.t{color:rgba(192,192,192,.8)}
-.section-title{color:#00ff41;font-size:13px;font-weight:600;margin-top:20px;margin-bottom:8px}
-.section-title::before{content:"# ";color:#333}
-
-/* ascii */
-pre{color:#00ff41;font-size:clamp(5px,1.3vw,11px);line-height:1.05;margin-bottom:8px}
-
-/* details */
-details{margin-bottom:4px}
-summary{color:#00ff41;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;font-size:13px;padding:4px 0;transition:opacity .2s}
+body{background:#000;color:#01ff00;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:14px;line-height:1.6;overflow:hidden;height:100vh;width:100vw}
+#terminal{padding:16px 20px;display:flex;flex-direction:column;height:100vh;overflow:hidden}
+#output{flex:1;overflow-y:auto;padding-bottom:8px}
+#output::-webkit-scrollbar{width:12px}
+#output::-webkit-scrollbar-track{background:#000}
+#output::-webkit-scrollbar-thumb{background:#2e2e2e}
+#output::-webkit-scrollbar-thumb:hover{background:#414141}
+#output::-webkit-scrollbar-corner{background:#000}
+#input-line{display:flex;align-items:center;gap:0;flex-shrink:0;padding-top:4px}
+.prompt{color:#04a500;white-space:pre;flex-shrink:0}
+#cmd-input{flex:1;background:transparent;border:none;color:#01ff00;font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:500;outline:none;caret-color:#e5e500}
+.host{color:#04a5b2}
+.g{color:#01ff00}
+.y{color:#e5e500}
+.dim{color:rgba(1,255,0,.35)}
+.t{color:rgba(1,255,0,.7)}
+pre{color:#01ff00;font-size:clamp(5px,1.2vw,10px);line-height:1.05;margin:4px 0}
+.line{margin-bottom:2px;white-space:pre-wrap;word-break:break-word}
+.section-title{color:#e5e500;font-size:13px;font-weight:700;margin-top:14px;margin-bottom:4px}
+.sub-title{color:rgba(1,255,0,.4);font-size:11px;margin-bottom:4px}
+details{margin-bottom:2px}
+summary{color:#01ff00;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;font-size:13px;padding:2px 0}
 summary:hover{opacity:.7}
-summary .arrow{color:#444;transition:color .2s}
-details[open] .arrow{color:#00ff41}
-.detail-body{padding:4px 0 10px 20px;border-left:1px solid rgba(0,90,26,.3);margin-left:4px}
-.detail-body p,.detail-body li{font-size:13px;line-height:1.7;color:rgba(192,192,192,.7);margin-bottom:4px}
+summary .arrow{color:rgba(1,255,0,.25)}
+details[open] .arrow{color:#e5e500}
+.detail-body{padding:2px 0 6px 20px;border-left:1px solid rgba(1,255,0,.15);margin-left:4px}
+.detail-body p,.detail-body li{font-size:13px;line-height:1.6;color:rgba(1,255,0,.65);margin-bottom:3px}
 .detail-body li{list-style:none}
-.detail-body li::before{content:"-  ";color:#333}
-.detail-body a{color:#00ff41;text-decoration:none}
+.detail-body li::before{content:"- ";color:rgba(1,255,0,.2)}
+.detail-body a{color:#04a5b2;text-decoration:none}
 .detail-body a:hover{text-decoration:underline}
-
-.tag{display:inline-block;padding:1px 7px;border:1px solid rgba(0,90,26,.25);border-radius:3px;font-size:10px;color:rgba(192,192,192,.4);margin-right:3px;margin-bottom:3px}
-
-.contact{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
-.contact a{font-size:12px;color:rgba(192,192,192,.5);text-decoration:none;padding:4px 10px;border:1px solid rgba(0,90,26,.25);border-radius:4px;transition:color .3s,border-color .3s}
-.contact a:hover{color:#00ff41;border-color:rgba(0,255,65,.4)}
-
-.contrib-img{width:100%;filter:brightness(.9) contrast(1.1);border-radius:4px;margin-top:4px}
-
-.footer{text-align:center;margin-top:32px;color:#333;font-size:11px}
-
-/* ── pixelated photo ── */
-.photo-wrap{display:inline-block;border:1px solid rgba(0,90,26,.2);border-radius:4px;overflow:hidden;vertical-align:middle;margin-right:12px;width:80px;height:80px;background:#0a0a0a}
-.photo-wrap img{width:100%;height:100%;object-fit:cover;image-rendering:pixelated;image-rendering:crisp-edges}
-.photo-placeholder{width:100%;height:100%;align-items:center;justify-content:center;color:#00ff41;font-size:28px;font-weight:700;background:#0a0a0a}
-
-@media(max-width:600px){body{padding:10px}.body{padding:16px 14px 24px}}
+.detail-body .inst{color:rgba(1,255,0,.35);font-size:11px}
+.result-block{background:#0a0a0a;border-left:2px solid rgba(1,255,0,.25);padding:6px 10px;margin:6px 0;font-size:13px;color:rgba(1,255,0,.55);line-height:1.6}
+.result-block strong{color:rgba(1,255,0,.75)}
+.seq-block{background:#0a0a0a;border:1px solid rgba(1,255,0,.12);padding:8px 12px;margin:6px 0}
+.seq-block .seq-label{color:rgba(1,255,0,.3);font-size:11px;margin-bottom:3px}
+.seq-block .seq{letter-spacing:.12em;color:rgba(1,255,0,.6);font-size:12px}
+.seq-block .seq-note{color:rgba(1,255,0,.25);font-size:11px;margin-top:3px}
+.tag{display:inline-block;padding:1px 6px;border:1px solid rgba(1,255,0,.15);border-radius:2px;font-size:10px;color:rgba(1,255,0,.35);margin-right:2px;margin-bottom:2px}
+.contact{display:flex;flex-wrap:wrap;gap:4px;margin-top:2px}
+.contact a{font-size:12px;color:rgba(1,255,0,.45);text-decoration:none;padding:3px 8px;border:1px solid rgba(1,255,0,.15);border-radius:3px;transition:color .2s,border-color .2s}
+.contact a:hover{color:#01ff00;border-color:rgba(1,255,0,.4)}
+.photo-wrap{display:inline-block;border:1px solid rgba(1,255,0,.12);border-radius:3px;overflow:hidden;vertical-align:middle;margin-right:10px;width:70px;height:70px;background:#000}
+.photo-wrap img{width:100%;height:100%;object-fit:cover;image-rendering:pixelated}
+.photo-placeholder{width:100%;height:100%;align-items:center;justify-content:center;color:#01ff00;font-size:24px;font-weight:700;background:#000}
+.activity-card{display:flex;gap:10px;align-items:flex-start;background:#0a0a0a;border:1px solid rgba(1,255,0,.1);padding:8px;margin-bottom:6px}
+.activity-card img{flex-shrink:0;object-fit:cover;border:1px solid rgba(1,255,0,.08)}
+.activity-card .act-title{color:rgba(1,255,0,.65);font-size:13px;font-weight:700;margin-bottom:1px}
+.activity-card .act-desc{color:rgba(1,255,0,.45);font-size:12px;line-height:1.5}
+.edu-entry{margin-bottom:8px}
+.edu-dates{color:rgba(1,255,0,.3);font-size:11px}
+.edu-school{color:rgba(1,255,0,.55);font-size:13px;font-weight:700;margin:1px 0}
+.edu-detail{color:rgba(1,255,0,.45);font-size:12px;line-height:1.6}
+.impact-quote{color:rgba(1,255,0,.55);font-style:italic;font-size:13px;margin:4px 0}
+#mol-viewer{width:100%;height:400px;display:block;border:1px solid rgba(1,255,0,.15);border-radius:3px;cursor:grab;margin-top:6px}
+.cmd-output{margin-bottom:6px}
+.cmd-header{color:rgba(1,255,0,.4);font-size:13px;margin-bottom:2px}
+.cmd-error{color:#e50101}
+@media(max-width:600px){#terminal{padding:10px 12px}.activity-card{flex-direction:column}.activity-card img{width:100%!important;height:auto!important}}
 </style>
 </head>
 <body>
-
-<div class="terminal">
-  <div class="title-bar">
-    <div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
-    <div class="title-text">aly@dhedhialy:~/portfolio</div>
+<div id="terminal">
+  <div id="output"></div>
+  <div id="input-line">
+    <span class="prompt">&gt; </span>
+    <input type="text" id="cmd-input" autofocus spellcheck="false" autocomplete="off" />
   </div>
+</div>
 
-  <div class="body">
+<script>
+(function(){
+var out = document.getElementById('output');
+var input = document.getElementById('cmd-input');
 
-    <div class="line"><span class="dim">⏎</span></div>
+var history = [];
+var historyIdx = -1;
+var hints = [];
 
-    <pre>
+var commands = [
+  {cmd:'about', desc:'about Aly Dhedhi'},
+  {cmd:'activities', desc:'extracurricular activities'},
+  {cmd:'clear', desc:'clear terminal'},
+  {cmd:'contact', desc:'contact information'},
+  {cmd:'cv', desc:'view CV'},
+  {cmd:'education', desc:'education background'},
+  {cmd:'help', desc:'show available commands'},
+  {cmd:'impact', desc:'TCF fundraising impact'},
+  {cmd:'projects', desc:'research projects'},
+  {cmd:'research', desc:'current research'},
+  {cmd:'socials', desc:'social media links'},
+  {cmd:'welcome', desc:'show welcome screen'},
+  {cmd:'whoami', desc:'about current user'}
+];
+
+function scrollBottom(){
+  out.scrollTop = out.scrollHeight;
+}
+
+function printHTML(html){
+  var d = document.createElement('div');
+  d.className = 'cmd-output';
+  d.innerHTML = html;
+  out.appendChild(d);
+  scrollBottom();
+}
+
+function printCmd(cmd){
+  var d = document.createElement('div');
+  d.className = 'cmd-output';
+  d.innerHTML = '<span class="cmd-header">&gt; ' + cmd.split('<')[0].split('>')[0] + '</span>';
+  out.appendChild(d);
+  scrollBottom();
+}
+
+function printError(cmd){
+  var d = document.createElement('div');
+  d.className = 'cmd-output';
+  d.innerHTML = '<span class="cmd-header">&gt; ' + cmd + '</span><div class="cmd-error">command not found: ' + cmd + '</div>';
+  out.appendChild(d);
+  scrollBottom();
+}
+
+function clearOutput(){
+  out.innerHTML = '';
+  scrollBottom();
+}
+
+function processCmd(cmd){
+  cmd = cmd.trim();
+  if(!cmd) return;
+  history.unshift(cmd);
+  historyIdx = -1;
+  var parts = cmd.split(/\s+/);
+  var c = parts[0].toLowerCase();
+  switch(c){
+    case 'welcome': printCmd(cmd); showWelcome(); break;
+    case 'whoami': printCmd(cmd); showWhoami(); break;
+    case 'about': printCmd(cmd); showAbout(); break;
+    case 'research': printCmd(cmd); showResearch(); break;
+    case 'projects': printCmd(cmd); showProjects(); break;
+    case 'education': printCmd(cmd); showEducation(); break;
+    case 'impact': printCmd(cmd); showImpact(); break;
+    case 'activities': printCmd(cmd); showActivities(); break;
+    case 'cv': printCmd(cmd); showCV(); break;
+    case 'contact': printCmd(cmd); showContact(); break;
+    case 'socials': printCmd(cmd); showSocials(); break;
+    case 'help': printCmd(cmd); showHelp(); break;
+    case 'clear': clearOutput(); break;
+    default: printError(cmd); return;
+  }
+  input.value = '';
+}
+
+function getMatch(input){
+  var m = [];
+  commands.forEach(function(cmdObj){
+    if(cmdObj.cmd.indexOf(input) === 0) m.push(cmdObj.cmd);
+  });
+  return m;
+}
+
+input.addEventListener('keydown', function(e){
+  if(e.key === 'Enter'){
+    processCmd(input.value);
+  } else if(e.key === 'Tab' || (e.ctrlKey && e.key === 'i')){
+    e.preventDefault();
+    if(!input.value) return;
+    var m = getMatch(input.value);
+    if(m.length === 1){
+      input.value = m[0];
+    } else if(m.length > 1){
+      hints = m;
+      showHints(hints);
+    }
+  } else if(e.key === 'ArrowUp'){
+    e.preventDefault();
+    if(historyIdx < history.length - 1){
+      historyIdx++;
+      input.value = history[historyIdx];
+    }
+  } else if(e.key === 'ArrowDown'){
+    e.preventDefault();
+    if(historyIdx > 0){
+      historyIdx--;
+      input.value = history[historyIdx];
+    } else if(historyIdx === 0){
+      historyIdx = -1;
+      input.value = '';
+    }
+  } else if(e.ctrlKey && e.key === 'l'){
+    e.preventDefault();
+    clearOutput();
+  }
+});
+
+function showHints(hintsArr){
+  var d = document.createElement('div');
+  d.className = 'cmd-output';
+  d.style.color = 'rgba(1,255,0,.3)';
+  d.style.fontSize = '13px';
+  d.innerHTML = hintsArr.join('  ');
+  out.appendChild(d);
+  scrollBottom();
+}
+
+/* ── generate unique IDs for details/summary ── */
+var idCounter = 0;
+function uid(){return 'd'+(++idCounter);}
+
+/* ── WELCOME ── */
+function showWelcome(){
+  printHTML(
+`<pre>
   _____                                                         _____
 ( ___ )-------------------------------------------------------( ___ )
  |   |                                                         |   |
  |   |     _    _  __   __  ____  _   _ _____ ____  _   _ ___  |   |
- |   |    / \  | | \ \ / / |  _ \| | | | ____|  _ \| | | |_ _| |   |
- |   |   / _ \ | |  \ V /  | | | | |_| |  _| | | | | |_| || |  |   |
- |   |  / ___ \| |___| |   | |_| |  _  | |___| |_| |  _  || |  |   |
- |   | /_/   \_\_____|_|   |____/|_| |_|_____|____/|_| |_|___| |   |
+ |   |    / \\  | | \\ \\ / / |  _ \\| | | | ____|  _ \\| | | |_ _| |   |
+ |   |   / _ \\ | |  \\ V /  | | | | |_| |  _| | | | | |_| || |  |   |
+ |   |  / ___ \\| |___| |   | |_| |  _  | |___| |_| |  _  || |  |   |
+ |   | /_/   \\_\\_____|_|   |____/|_| |_|_____|____/|_| |_|___| |   |
  |___|                                                         |___|
 (_____)-------------------------------------------------------(_____)
-    </pre>
+</pre>
+<div>Welcome to Aly Dhedhi's terminal portfolio.</div>
+<div class="dim">----</div>
+<div>Type <span class="y">help</span> for available commands.</div>`
+  );
+}
 
-    <div class="line"><span class="host">aly</span><span class="dim">@</span><span class="host">dhedhialy</span><span class="dim">:</span><span class="path">~</span><span class="dim">$</span> <span class="g">whoami</span></div>
+/* ── WHOAMI ── */
+function showWhoami(){
+  printHTML(
+`<div class="line" style="margin-top:2px">
+  <div class="photo-wrap">
+    <img src="photos/headshot.jpg" alt="aly dhedhi" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+    <div class="photo-placeholder" style="display:none">AD</div>
+  </div>
+  <span style="vertical-align:middle">
+    <span class="g" style="font-size:15px;font-weight:700">aly dhedhi</span><br/>
+    <span class="t" style="font-size:12px;">Healthcare AI Researcher · MIT CSAIL · MIT Critical Data</span><br/>
+    <span style="font-size:11px;color:rgba(1,255,0,.4)">
+      Pre-med high school researcher working on clinical AI systems, embedding-based patient trajectory modeling, and computational biomedical pipeline design.
+    </span>
+  </span>
+</div>`
+  );
+}
 
-    <div class="line" style="margin-top:4px">
-      <div class="photo-wrap">
-        <img src="photos/headshot.jpg" alt="aly dhedhi" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-        <div class="photo-placeholder" style="display:none">AD</div>
-      </div>
-      <span style="vertical-align:middle">
-        <span class="g" style="font-size:16px;font-weight:700">aly dhedhi</span><br/>
-        <span class="t" style="font-size:12px;">SWE · compbio @ MIT · building Mantis AI</span><br/>
-        <span style="font-size:11px;color:rgba(192,192,192,.5)">
-          interested in how AI can be applied to solving healthcare issues
-        </span>
-      </span>
+/* ── ABOUT ── */
+function showAbout(){
+  printHTML(
+`<div class="line t" style="font-size:13px">
+Aly Dhedhi is a high school sophomore with a deep interest in biomedical research, particularly at the intersection of machine learning and clinical medicine. He is currently on a pre-med pathway with a specific interest in oncology, working across MIT CSAIL and MIT Critical Data on clinical AI systems, ICU predictive modeling, and computational molecular design.
+</div>
+<div class="line t" style="font-size:13px;margin-top:4px">
+His research spans patient trajectory representation in latent embedding space, unsupervised clustering of physiological time-series data, multimodal clinical representation learning, and structure-based peptide design for CNS drug delivery.
+</div>
+<div style="margin-top:4px">
+  <span class="tag">Clinical Time-Series</span>
+  <span class="tag">Patient Trajectory</span>
+  <span class="tag">Unsupervised Clustering</span>
+  <span class="tag">Multimodal Learning</span>
+  <span class="tag">Computational Drug Design</span>
+  <span class="tag">Oncology</span>
+</div>`
+  );
+}
+
+/* ── RESEARCH ── */
+function showResearch(){
+  var id1 = uid(), id2 = uid(), id3 = uid();
+  printHTML(
+`<div class="sub-title">current research</div>
+
+<details>
+  <summary><span class="arrow">&#9656;</span> Mantis — Visual Healthcare AI Platform <span class="dim">MIT CSAIL</span></summary>
+  <div class="detail-body">
+    <p class="inst">Healthcare Vertical Researcher</p>
+    <p>Mantis is a visual data science and AI platform created by Professor <span class="g">Manolis Kellis</span> at MIT CSAIL, enabling users to build, explore, and collaborate on complex data workflows.</p>
+    <p>Aly contributes as a Healthcare Vertical Researcher, focusing on patient trajectory embedding visualization, temporal modeling of disease progression, clustering patients by physiological trajectory similarity, and integration of quantitative clinical variables with learned embedding spaces.</p>
+    <div><a href="https://home.withmantis.com/" target="_blank">withmantis.com</a> <span class="dim">|</span> <a href="https://mantis.csail.mit.edu/" target="_blank">mantis.csail.mit.edu</a></div>
+    <div style="margin-top:3px"><span class="tag">Embedding Visualization</span><span class="tag">Longitudinal Modeling</span><span class="tag">Patient Trajectories</span></div>
+  </div>
+</details>
+
+<details>
+  <summary><span class="arrow">&#9656;</span> Clinical Bias in Obesity Guidelines <span class="dim">MIT Critical Data</span></summary>
+  <div class="detail-body">
+    <p class="inst">Tech Lead — 2025&ndash;Present</p>
+    <p>Leading a research pipeline identifying geographic and demographic bias in clinical literature through citation extraction, representation analysis, and structured dataset generation.</p>
+    <p>Extracting and processing citation networks from the AACE/ACE 2016 Clinical Practice Guidelines for Obesity (<a href="https://doi.org/10.4158/EP161365.GL" target="_blank">DOI: 10.4158/EP161365.GL</a>).</p>
+    <p>Collaborating with researchers from <span class="g">UCLA</span>, <span class="g">University of Pennsylvania</span>, and <span class="g">National University of Singapore</span> within the MIT Critical Data global network.</p>
+    <div><a href="https://colab.research.google.com/drive/1F6z-dSSKNSF_vXwgHvh8BsxlHHg3mNRW?usp=sharing" target="_blank">Colab — Obesity Guidelines Bias Pipeline</a></div>
+    <div style="margin-top:3px"><span class="tag">Citation Extraction</span><span class="tag">Demographic Bias</span><span class="tag">Clinical Guidelines</span></div>
+  </div>
+</details>
+
+<details>
+  <summary><span class="arrow">&#9656;</span> JEPA for Health AI <span class="dim">MIT Critical Data</span></summary>
+  <div class="detail-body">
+    <p class="inst">Working Group — Prof. Leo Anthony Celi — 2025&ndash;Present</p>
+    <p>Participating in the JEPA for Health AI working group exploring Joint Embedding Predictive Architectures — a self-supervised framework predicting in latent representation space to learn abstract, high-level clinical concepts.</p>
+    <p>Contributing to research threads including multimodal clinical discordance detection (chest X-rays, lab values, clinical notes), bedside alarm precision via temporal waveform abstraction, and causal patient trajectory modeling.</p>
+    <div style="margin-top:3px"><span class="tag">JEPA</span><span class="tag">Self-Supervised Learning</span><span class="tag">Multimodal Discordance</span><span class="tag">Temporal Waveform</span></div>
+  </div>
+</details>`
+  );
+}
+
+/* ── PROJECTS ── */
+function showProjects(){
+  printHTML(
+`<div class="sub-title">past research</div>
+
+<details>
+  <summary><span class="arrow">&#9656;</span> ICU Mortality Prediction <span class="dim">IEEE CIBCB 2026</span></summary>
+  <div class="detail-body">
+    <p class="inst">MIT Critical Data — March 2026</p>
+    <p>An end-to-end ICU mortality prediction pipeline built on <span class="g">MIMIC-IV</span>, processing high-dimensional tabular features from clinical time-series and laboratory data. Spanning data extraction, feature engineering, model evaluation, interpretability, and unsupervised patient phenotyping.</p>
+    <div class="result-block">
+      <strong>Results:</strong> Evaluated Logistic Regression, Random Forest, XGBoost, and LightGBM under class imbalance — achieving <strong>AUROC &gt; 0.84</strong> and <strong>AUPRC ≈ 0.28</strong>. Applied GroupKFold cross-validation for patient-level separation. Optimized thresholds for <strong>high-recall performance (≈ 0.85)</strong> via PR curve analysis. MiniBatchKMeans clustering with cluster-specific SHAP analysis. UMAP for low-dimensional validation.
     </div>
+    <div style="margin-top:3px"><span class="tag">MIMIC-IV</span><span class="tag">XGBoost</span><span class="tag">LightGBM</span><span class="tag">SHAP</span><span class="tag">UMAP</span></div>
+    <div style="margin-top:4px"><a href="https://doi.org/10.21203/rs.3.rs-9612331/v1" target="_blank">Preprint DOI</a> <span class="dim">|</span> <a href="https://cibcb2026.dib.uth.gr/" target="_blank">IEEE CIBCB 2026</a> <span class="dim">|</span> <a href="https://colab.research.google.com/drive/1JT27myiKoC5ncInsxGLpkRTk8ekaPQwR?usp=sharing" target="_blank">Colab</a></div>
+  </div>
+</details>
 
-    <div class="line" style="margin-top:4px">
-      <span class="dim">contributing to:</span>
-      <span class="tag">MIT Critical Data</span>
-      <span class="tag">Kellis Lab</span>
-      <span class="tag">ponytail</span>
-      <span class="tag">opencode</span>
+<details>
+  <summary><span class="arrow">&#9656;</span> BBB-Penetrant Peptide Design <span class="dim">IEEE CIBCB 2026</span></summary>
+  <div class="detail-body">
+    <p class="inst">Computational Research — Nov 2025 – Apr 2026</p>
+    <p>A cloud-native <em>in silico</em> pipeline for designing blood-brain barrier (BBB) penetrant peptides targeting <span class="g">EGFRvIII</span> in glioblastoma. Four Angiopep-2/GE11 fusion constructs designed with cyclization, terminal capping, and retro-enantio variations. Structures via <span class="g">ESMFold</span>, docked with <span class="g">PatchDock</span>, scored using custom empirical interface scoring.</p>
+    <div class="result-block">
+      <strong>Lead candidate (P3 — Cyclized):</strong> <strong>≈ 281 hydrophobic contacts</strong> and <strong>33 salt bridges</strong> at the receptor binding interface. Highest BBB penetration likelihood across all four constructs.
     </div>
-
-    <div class="section-title">projects</div>
-
-    <details>
-      <summary><span class="arrow">&gt;</span> Mantis AI</summary>
-      <div class="detail-body">
-        <p>Bug fixes, integrating <span class="g">rl-healthcare-actions</span> into the platform.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary><span class="arrow">&gt;</span> ponytail</summary>
-      <div class="detail-body">
-        <p>General contributions to the opencode ponytail skill — lazy, efficient coding mode.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary><span class="arrow">&gt;</span> TB Resistance Discovery <span class="m">— Kellis Lab, MIT</span></summary>
-      <div class="detail-body">
-        <p>XGBoost pipeline forecasting drug-resistant mutations in <em>M. tuberculosis</em> — <span class="g">0.971 AUROC</span>. Integrated AlphaFold structural features + drug-pocket coordinates → ranked 44,016 variants. Validated against 12,287 CRYPTIC isolates. Discovered novel candidate mechanism (<span class="g">gyrB Q538L</span>) via docking.</p>
-        <p>First-author paper in prep. <a href="https://github.com/DHEDHiAly/tb-resistance-discovery">github</a></p>
-        <div><span class="tag">XGBoost</span><span class="tag">AlphaFold</span><span class="tag">docking</span><span class="tag">M. tb</span></div>
-      </div>
-    </details>
-
-    <details>
-      <summary><span class="arrow">&gt;</span> ICU Mortality Prediction <span class="m">— IEEE CIBCB 2026</span></summary>
-      <div class="detail-body">
-        <p>MIMIC-IV pipeline: K-Means phenotyping + gradient boosting. Cluster-augmented representations → <span class="g">AUROC 0.869</span>. First-author paper accepted at IEEE CIBCB 2026.</p>
-        <div><span class="tag">MIMIC-IV</span><span class="tag">K-Means</span><span class="tag">IEEE</span></div>
-      </div>
-    </details>
-
-    <details>
-      <summary><span class="arrow">&gt;</span> BBB Peptide Design <span class="m">— IEEE CIBCB 2026</span></summary>
-      <div class="detail-body">
-        <p>In silico pipeline for BBB-penetrant peptides targeting EGFRvIII in glioblastoma. Top cyclized Angiopep-2/GE11 candidate via structural prediction + docking. First-author, IEEE CIBCB 2026.</p>
-        <div><span class="tag">peptide</span><span class="tag">EGFRvIII</span><span class="tag">glioblastoma</span></div>
-      </div>
-    </details>
-
-    <details>
-      <summary><span class="arrow">&gt;</span> Clinical Bias in Guidelines <span class="m">— MIT Critical Data</span></summary>
-      <div class="detail-body">
-        <p>Pipeline parsing guideline DOIs, extracting cited-study demographics to measure representation gaps. Automated retrieval + demographic extraction + visualization.</p>
-        <div><span class="tag">NLP</span><span class="tag">clinical bias</span></div>
-      </div>
-    </details>
-
-    <details>
-      <summary><span class="arrow">&gt;</span> Patient Trajectory Modeling <span class="m">— MIT CSAIL</span></summary>
-      <div class="detail-body">
-        <p>Multimodal embedding (labs + text) + K-Means → latent clinical states from MIMIC-IV. Trajectory features across millions of steps. Mentored by Manolis Kellis.</p>
-        <div><span class="tag">embeddings</span><span class="tag">MIMIC-IV</span><span class="tag">CSAIL</span></div>
-      </div>
-    </details>
-
-    <div class="section-title">community</div>
-    <div class="line t" style="font-size:13px">
-      Raised <span class="g">$23,000+</span> for <span class="g">The Citizens Foundation</span> — funding education for underprivileged kids in Pakistan. Top fundraiser twice. Eagle Scout (in progress). Muay Thai, tennis, piano (Trinity Grade 5).
+    <div class="seq-block">
+      <div class="seq-label">Lead sequence — P3 Cyclized (26 residues, ESMFold)</div>
+      <div class="seq">T F F Y G G S R G K R N N F K T C V P L P H L K F C</div>
+      <div class="seq-note">Cyclized via Cys17–Cys26 disulfide · Angiopep-2/GE11 fusion · ESMFold v1</div>
     </div>
+    <canvas id="mol-viewer"></canvas>
+    <div style="margin-top:3px"><span class="tag">Glioblastoma</span><span class="tag">EGFRvIII</span><span class="tag">BBB</span><span class="tag">ESMFold</span><span class="tag">PatchDock</span></div>
+    <div style="margin-top:4px"><a href="https://colab.research.google.com/drive/1t1cbIKpqenyb50-5I1yk2pIujZ3i0TBs?usp=sharing" target="_blank">Colab Notebook</a></div>
+  </div>
+</details>
 
-    <div class="section-title">contributions</div>
-    <img class="contrib-img" src="https://ghchart.rshah.org/00ff41/DHEDHiAly" alt="contribution chart" />
+<details>
+  <summary><span class="arrow">&#9656;</span> TB Resistance Discovery <span class="dim">Kellis Lab, MIT</span></summary>
+  <div class="detail-body">
+    <p>XGBoost pipeline forecasting drug-resistant mutations in <em>M. tuberculosis</em> — <span class="g">0.971 AUROC</span>. Integrated AlphaFold structural features + drug-pocket coordinates → ranked 44,016 variants. Validated against 12,287 CRYPTIC isolates. Discovered novel candidate mechanism (<span class="g">gyrB Q538L</span>) via docking.</p>
+    <p>First-author paper in prep. <a href="https://github.com/DHEDHiAly/tb-resistance-discovery">github</a></p>
+    <div><span class="tag">XGBoost</span><span class="tag">AlphaFold</span><span class="tag">Docking</span><span class="tag">M. tb</span></div>
+  </div>
+</details>
 
-    <div class="section-title">contact</div>
-    <div class="contact">
-      <a href="mailto:alyd@mit.edu">alyd@mit.edu</a>
-      <a href="mailto:alydhedhi@gmail.com">alydhedhi@gmail.com</a>
-      <a href="https://github.com/DHEDHiAly" target="_blank">github</a>
-      <a href="https://www.linkedin.com/in/aly-dhedhi-673228350" target="_blank">linkedin</a>
-      <a href="https://orcid.org/0009-0006-5416-1715" target="_blank">orcid</a>
-      <a href="https://scholar.google.com/citations?user=w_DJ-kYAAAAJ" target="_blank">google scholar</a>
-      <a href="tel:+19546613571">(954) 661-3571</a>
-    </div>
+<details>
+  <summary><span class="arrow">&#9656;</span> Patient Trajectory Modeling <span class="dim">MIT CSAIL</span></summary>
+  <div class="detail-body">
+    <p>Multimodal embedding (labs + text) + K-Means → latent clinical states from MIMIC-IV. Trajectory features across millions of steps. Mentored by Manolis Kellis.</p>
+    <div><span class="tag">Embeddings</span><span class="tag">MIMIC-IV</span><span class="tag">CSAIL</span><span class="tag">K-Means</span></div>
+  </div>
+</details>`
+  );
+  initMolViewer();
+}
 
-    <div class="footer"><span class="dim">aly dhedhi</span> © 2026</div>
+/* ── EDUCATION ── */
+function showEducation(){
+  printHTML(
+`<div class="edu-entry">
+  <div class="edu-dates">2026 – Present</div>
+  <div class="edu-school">American Heritage School Broward</div>
+  <div class="edu-detail">Pre-med pre-professional program. Currently a sophomore.</div>
+</div>
+<div class="edu-entry">
+  <div class="edu-dates">2024 – 2026</div>
+  <div class="edu-school">Jumeirah College, Dubai</div>
+  <div class="edu-detail">GCSEs: Geography · Economics · Mathematics (Higher) · English Language · English Literature · Food Technology · Design &amp; Technology · Combined Sciences</div>
+  <div class="edu-detail">GPA: 4.1 (Weighted) · 4.0 (Unweighted)</div>
+</div>`
+  );
+}
 
+/* ── IMPACT ── */
+function showImpact(){
+  printHTML(
+`<div class="line t" style="font-size:13px">
+Raised <span class="g">$23,000+</span> for <span class="g">The Citizens Foundation (TCF)</span> — funding education for underprivileged kids in Pakistan.
+</div>
+<div class="impact-quote">&ldquo;Recipient of Star Volunteer &amp; Top Fundraiser Award&rdquo;</div>
+<div class="line t" style="font-size:13px">
+Presented on stage by the TCF Chairman in recognition of raising over $23,000 USD and sustained public advocacy for TCF's education mission in Pakistan. Top fundraiser twice.
+</div>
+<div><a href="https://yallagive.com/en/fundraiser/Aly-Dhedhi-15473" target="_blank">Fundraising page</a></div>`
+  );
+}
+
+/* ── ACTIVITIES ── */
+function showActivities(){
+  printHTML(
+`<div class="activity-card">
+  <img src="photos/tennis.jpg" alt="tennis" style="height:130px;width:auto" />
+  <div>
+    <div class="act-title">Tennis</div>
+    <div class="act-desc">10+ years experience playing intramural.</div>
   </div>
 </div>
+<div class="activity-card" style="padding:8px">
+  <div>
+    <div class="act-title">Muay Thai</div>
+    <div class="act-desc">Competitive intramural experience.</div>
+  </div>
+</div>
+<div class="activity-card">
+  <img src="photos/scouts.jpg" alt="boy scouts" style="width:160px;height:auto" />
+  <div>
+    <div class="act-title">Boy Scouts of America — Troop 0813</div>
+    <div class="act-desc">Troop Guide (current) · Life Scout (68% toward Eagle)</div>
+    <div class="act-desc">Joined 10/2021 · 35 service hours · 10 camping nights · 6 hiking miles</div>
+    <div class="act-desc">Merit Badges: Citizenship in the Community, Nation &amp; World · Swimming · Lifesaving · Scholarship · Chess · Sports · Kayaking</div>
+  </div>
+</div>`
+  );
+}
 
+/* ── CV ── */
+function showCV(){
+  printHTML(
+`<div class="line t" style="font-size:13px">
+View or download my full CV for a detailed overview of my research experience, education, and activities.
+</div>
+<div style="margin-top:3px"><a href="/cv/">./cv</a> <span class="dim">(opens CV page)</span></div>`
+  );
+}
+
+/* ── CONTACT ── */
+function showContact(){
+  printHTML(
+`<div class="contact">
+  <a href="mailto:alyd@mit.edu">alyd@mit.edu</a>
+  <a href="mailto:alydhedhi@gmail.com">alydhedhi@gmail.com</a>
+  <a href="https://github.com/DHEDHiAly" target="_blank">github</a>
+  <a href="https://www.linkedin.com/in/aly-dhedhi-673228350" target="_blank">linkedin</a>
+  <a href="https://orcid.org/0009-0007-9255-4906" target="_blank">orcid</a>
+  <a href="https://scholar.google.com/citations?user=w_DJ-kYAAAAJ" target="_blank">google scholar</a>
+  <a href="tel:+19546613571">(954) 661-3571</a>
+</div>`
+  );
+}
+
+/* ── SOCIALS ── */
+function showSocials(){
+  printHTML(
+`<div class="contact">
+  <a href="https://github.com/DHEDHiAly" target="_blank">github/DHEDHiAly</a>
+  <a href="https://www.linkedin.com/in/aly-dhedhi-673228350" target="_blank">linkedin</a>
+  <a href="https://orcid.org/0009-0007-9255-4906" target="_blank">orcid</a>
+  <a href="https://scholar.google.com/citations?user=w_DJ-kYAAAAJ" target="_blank">google scholar</a>
+  <a href="https://yallagive.com/en/fundraiser/Aly-Dhedhi-15473" target="_blank">fundraising</a>
+</div>`
+  );
+}
+
+/* ── HELP ── */
+function showHelp(){
+  var html = '<div class="sub-title">available commands</div>';
+  commands.forEach(function(cmdObj){
+    html += '<div style="margin-bottom:2px"><span class="y" style="min-width:140px;display:inline-block">' + cmdObj.cmd + '</span><span class="dim">' + cmdObj.desc + '</span></div>';
+  });
+  printHTML(html);
+}
+
+/* ── 3D Molecular Viewer ── */
+var molViewerInited = false;
+function initMolViewer(){
+  if(molViewerInited) return;
+  setTimeout(function(){
+    var cv = document.getElementById('mol-viewer');
+    if(!cv) return;
+    molViewerInited = true;
+    (function(){
+var RC = [[-2.21, 15.99, -8.2], [-1.58, 15.84, -11.96], [-3.86, 18.91, -12.33], [-1.76, 20.22, -15.26], [-2.47, 18.22, -18.45], [0.62, 18.6, -20.73], [3.01, 19.9, -17.97], [5.66, 21.82, -20.04], [4.13, 22.97, -23.4], [3.04, 19.42, -24.55], [6.13, 17.14, -24.09], [9.9, 17.95, -23.69], [10.35, 20.69, -26.31], [6.81, 20.2, -27.9], [4.61, 19.16, -30.97], [5.98, 18.79, -34.53], [4.15, 18.0, -37.8], [5.91, 15.74, -40.32], [4.92, 14.45, -43.75], [3.98, 10.79, -44.42], [5.57, 8.03, -46.54], [5.15, 8.7, -50.27], [4.38, 12.41, -49.62], [6.63, 15.5, -49.31], [10.28, 14.8, -48.39], [9.64, 11.02, -48.58], [8.41, 11.32, -52.2], [8.71, 8.1, -54.22], [9.54, 6.1, -51.05], [7.64, 2.77, -50.87], [8.08, 2.17, -47.12], [9.71, 3.49, -43.89], [13.21, 1.96, -44.52], [16.48, 2.45, -42.52], [17.08, 5.67, -44.52], [14.1, 7.93, -43.67], [13.07, 6.6, -40.21], [15.31, 9.31, -38.59], [13.11, 12.1, -40.08], [10.14, 10.93, -37.87], [12.04, 11.73, -34.58], [10.36, 14.27, -32.23], [7.08, 14.21, -34.16], [3.59, 14.21, -32.64], [1.49, 14.5, -35.81], [2.56, 12.47, -38.84], [-0.02, 13.72, -41.38], [-0.33, 11.48, -44.41], [0.05, 7.7, -44.7], [2.51, 5.41, -42.88], [3.87, 2.29, -44.66], [5.94, -0.56, -43.15], [6.41, -3.13, -45.97], [8.95, -6.07, -45.72], [11.42, -3.95, -47.77], [12.04, -1.77, -44.69], [13.28, -4.72, -42.52], [14.92, -6.76, -45.35], [16.65, -3.81, -47.02], [16.56, -2.79, -50.68], [20.05, -3.13, -52.21], [19.29, -1.29, -55.51], [17.96, 1.87, -53.8], [21.13, 2.11, -51.55], [18.82, 1.39, -48.55], [19.81, -0.81, -45.59], [17.99, -3.4, -43.4], [16.06, -1.89, -40.48], [17.12, -2.69, -36.92], [14.0, -3.45, -34.85], [15.28, -1.06, -32.13], [14.75, 1.91, -34.54], [10.94, 1.5, -34.46], [10.95, 3.33, -31.1], [11.46, 6.55, -33.16], [7.61, 6.49, -33.78], [6.7, 6.19, -30.03], [5.99, 10.0, -30.22], [3.33, 9.77, -32.98], [-0.29, 10.11, -31.83], [-2.12, 11.38, -34.99], [-2.29, 9.96, -38.56], [-4.41, 11.96, -41.05], [-4.21, 9.22, -43.73], [-3.83, 5.46, -43.2], [-1.49, 3.09, -41.29], [-0.29, 0.15, -43.42], [1.83, -1.81, -41.5], [0.05, -4.93, -42.68], [-2.64, -4.53, -40.38], [-3.62, -7.67, -41.85], [-1.51, -10.21, -41.79], [-3.05, -12.97, -43.25], [-1.39, -14.24, -45.89], [-3.44, -12.54, -48.32], [-1.4, -12.68, -50.79], [-1.38, -10.59, -53.31], [-3.69, -8.47, -53.31], [-1.93, -6.49, -55.44], [-2.94, -3.16, -54.82], [-3.56, -0.54, -57.34], [-2.07, 2.31, -56.12], [-5.18, 4.36, -56.52], [-4.37, 5.94, -59.42], [-5.57, 8.97, -58.2], [-4.65, 11.68, -60.09], [-5.26, 14.62, -58.28], [-3.55, 16.4, -60.13], [-3.84, 19.79, -59.14], [-2.27, 21.98, -61.15], [0.68, 22.39, -59.46], [0.31, 23.47, -56.18], [0.85, 20.59, -54.29], [3.62, 20.59, -52.67], [5.97, 22.59, -54.03], [7.13, 20.66, -56.47], [9.26, 21.55, -59.07], [9.47, 18.31, -60.2], [12.36, 17.8, -58.67], [11.55, 16.93, -55.43], [12.54, 13.72, -56.09], [12.76, 13.82, -59.65], [14.91, 11.27, -60.54], [14.55, 9.04, -57.72], [16.59, 6.28, -58.28], [18.12, 6.76, -61.15], [19.21, 3.59, -61.52], [21.84, 3.32, -59.54], [20.5, 3.68, -56.4], [23.66, 4.38, -55.31], [23.21, 6.82, -52.89], [25.61, 6.97, -50.82], [24.63, 8.15, -47.77], [24.74, 5.23, -45.72], [27.49, 4.99, -44.01], [28.58, 2.55, -46.07], [28.84, 4.68, -49.05], [32.15, 4.94, -48.17], [33.61, 3.33, -50.72], [36.08, 4.95, -49.85], [38.12, 3.06, -48.31]];
+var PH = [[10.93, 26.75, -39.11, "N", "N"], [11.4, 25.47, -38.58, "C", "CA"], [11.08, 25.36, -37.09, "C", "C"], [12.92, 25.31, -38.79, "C", "CB"], [11.48, 26.21, -36.29, "O", "O"], [13.32, 23.84, -38.71, "C", "CG2"], [13.27, 25.82, -40.08, "O", "OG1"], [9.71, 24.92, -36.71, "N", "N"], [9.23, 25.33, -35.4, "C", "CA"], [9.35, 24.19, -34.4, "C", "C"], [7.78, 25.81, -35.49, "C", "CB"], [8.94, 23.07, -34.68, "O", "O"], [7.6, 27.07, -36.28, "C", "CG"], [8.13, 28.28, -35.84, "C", "CD1"], [6.9, 27.06, -37.48, "C", "CD2"], [7.97, 29.45, -36.57, "C", "CE1"], [6.73, 28.23, -38.22, "C", "CE2"], [7.27, 29.42, -37.77, "C", "CZ"], [10.26, 24.17, -33.41, "N", "N"], [10.74, 23.91, -32.06, "C", "CA"], [9.58, 23.88, -31.07, "C", "C"], [11.76, 24.97, -31.64, "C", "CB"], [8.89, 24.88, -30.89, "O", "O"], [13.09, 24.84, -32.33, "C", "CG"], [14.11, 24.09, -31.77, "C", "CD1"], [13.32, 25.48, -33.54, "C", "CD2"], [15.35, 23.97, -32.41, "C", "CE1"], [14.55, 25.36, -34.19, "C", "CE2"], [15.56, 24.61, -33.62, "C", "CZ"], [8.8, 22.62, -30.89, "N", "N"], [7.97, 22.48, -29.7, "C", "CA"], [8.37, 21.25, -28.9, "C", "C"], [6.49, 22.39, -30.08, "C", "CB"], [8.38, 20.13, -29.42, "O", "O"], [5.92, 23.68, -30.62, "C", "CG"], [5.53, 24.7, -29.77, "C", "CD1"], [5.78, 23.87, -32.0, "C", "CD2"], [5.0, 25.89, -30.26, "C", "CE1"], [5.26, 25.06, -32.5, "C", "CE2"], [4.36, 27.24, -32.12, "O", "OH"], [4.87, 26.06, -31.63, "C", "CZ"], [9.38, 21.08, -27.76, "N", "N"], [9.68, 21.01, -26.34, "C", "CA"], [9.34, 19.66, -25.72, "C", "C"], [8.19, 19.23, -25.77, "O", "O"], [10.15, 18.33, -25.89, "N", "N"], [10.3, 17.49, -24.71, "C", "CA"], [10.3, 16.01, -25.03, "C", "C"], [9.65, 15.57, -25.98, "O", "O"], [11.43, 15.09, -24.77, "N", "N"], [11.96, 13.74, -24.58, "C", "CA"], [10.83, 12.74, -24.32, "C", "C"], [12.95, 13.72, -23.41, "C", "CB"], [10.03, 12.93, -23.4, "O", "O"], [14.08, 14.52, -23.7, "O", "OG"], [10.18, 11.86, -25.22, "N", "N"], [9.16, 11.05, -24.55, "C", "CA"], [8.62, 9.96, -25.48, "C", "C"], [8.01, 11.93, -24.22, "C", "CB"], [9.27, 8.76, -25.59, "O", "O"], [8.54, 12.74, -23.2, "C", "CG"], [8.86, 12.33, -21.93, "C", "CD1"], [8.04, 13.91, -23.48, "C", "CD2"], [8.68, 13.06, -20.99, "C", "CE1"], [7.85, 14.64, -22.53, "C", "CE2"], [8.17, 14.23, -21.27, "C", "CZ"], [7.4, 10.63, -26.32, "N", "N"], [7.17, 9.59, -27.31, "C", "CA"], [5.67, 9.69, -27.73, "C", "C"], [7.56, 8.25, -26.78, "C", "CB"], [5.01, 10.83, -27.57, "O", "O"], [7.56, 7.17, -27.75, "C", "CG"], [8.87, 6.73, -27.94, "C", "CD1"], [6.49, 6.63, -28.42, "C", "CD2"], [9.16, 5.78, -28.8, "C", "CE1"], [6.82, 5.69, -29.24, "C", "CE2"], [8.17, 5.23, -29.48, "C", "CZ"], [5.01, 8.63, -28.37, "N", "N"], [3.56, 8.56, -28.02, "C", "CA"], [3.4, 8.92, -26.53, "C", "C"], [2.84, 7.19, -28.28, "C", "CB"], [3.88, 9.89, -26.03, "O", "O"], [1.36, 6.83, -27.9, "C", "CG"], [0.92, 5.47, -28.07, "C", "CD1"], [0.46, 7.72, -27.51, "C", "CD2"], [-0.41, 5.02, -27.85, "C", "CE1"], [-0.87, 7.27, -27.29, "C", "CE2"], [-1.31, 5.91, -27.46, "C", "CZ"], [4.2, 8.08, -25.58, "N", "N"], [4.1, 8.15, -24.13, "C", "CA"], [2.74, 8.74, -23.7, "C", "C"], [5.22, 9.04, -23.61, "C", "CB"], [2.45, 9.92, -24.02, "O", "O"], [6.43, 8.34, -24.15, "C", "CG"], [7.5, 8.33, -23.34, "C", "CD1"], [6.52, 7.7, -25.37, "C", "CD2"], [8.67, 7.69, -23.76, "C", "CE1"], [7.69, 7.06, -25.77, "C", "CE2"], [8.78, 7.07, -24.99, "C", "CZ"], [1.88, 7.97, -22.99, "N", "N"], [0.71, 8.52, -22.33, "C", "CA"], [0.68, 8.24, -20.85, "C", "C"], [-0.59, 8.0, -22.97, "C", "CB"], [1.54, 7.69, -20.22, "O", "O"], [0.04, 9.48, -20.0, "C", "CG"], [-1.17, 9.37, -19.4, "C", "CD1"], [0.67, 10.68, -19.79, "C", "CD2"], [-1.74, 10.4, -18.59, "C", "CE1"], [0.12, 11.69, -18.97, "C", "CE2"], [-1.11, 11.58, -18.38, "C", "CZ"], [0.42, 7.18, -21.06, "N", "N"], [-0.25, 6.78, -19.79, "C", "CA"], [0.25, 5.44, -19.21, "C", "C"], [-1.75, 6.59, -19.99, "C", "CB"], [1.15, 4.89, -19.85, "O", "O"], [-2.57, 7.76, -20.29, "C", "CG1"], [-2.13, 5.89, -18.78, "C", "CG2"], [10.62, 26.89, -40.63, "N", "N"], [10.11, 28.11, -41.27, "C", "CA"], [10.88, 29.32, -40.76, "C", "C"], [10.25, 28.12, -42.8, "C", "CB"], [11.55, 29.19, -39.92, "O", "O"], [10.66, 30.61, -41.35, "N", "N"], [11.39, 31.73, -40.73, "C", "CA"], [10.78, 32.29, -39.47, "C", "C"], [12.82, 31.3, -40.45, "C", "CB"], [9.94, 31.6, -38.62, "O", "O"], [13.6, 30.75, -41.5, "C", "CG"], [15.01, 30.92, -41.37, "C", "CD1"], [13.01, 30.02, -42.52, "C", "CD2"], [15.78, 30.41, -42.27, "C", "CE1"], [13.78, 29.5, -43.38, "C", "CE2"], [15.19, 29.7, -43.28, "C", "CZ"], [11.04, 26.13, -40.46, "N", "N"], [9.0, 23.01, -30.24, "N", "N"], [8.59, 23.52, -28.87, "C", "CA"], [8.97, 22.54, -27.81, "C", "C"], [7.06, 23.8, -28.89, "C", "CB"], [9.76, 21.61, -28.12, "O", "O"], [6.07, 22.71, -29.13, "C", "CG1"], [6.51, 25.11, -28.17, "C", "CG2"]];
+var PC = [[11.4, 25.47, -38.58], [9.23, 25.33, -35.4], [10.74, 23.91, -32.06], [7.97, 22.48, -29.7], [9.68, 21.01, -26.34], [10.3, 17.49, -24.71], [11.96, 13.74, -24.58], [9.16, 11.05, -24.55], [8.47, 7.3, -25.59], [10.13, 4.17, -27.34], [7.91, 3.81, -30.44], [7.28, -0.07, -29.86], [5.34, -1.48, -32.58], [6.52, -3.42, -35.62], [6.23, -1.81, -39.12], [4.03, -4.87, -40.06], [4.06, -4.54, -43.79], [0.34, -5.55, -43.93], [0.23, -6.79, -47.44], [-2.65, -4.75, -48.84], [-4.58, -7.23, -50.98], [-4.36, -4.78, -53.92], [-0.84, -3.67, -53.79], [1.57, -5.91, -55.97], [5.15, -4.37, -55.01], [7.72, -4.67, -52.25]];
+var EC = {C:'#FF6B35',N:'#5B8DD9',O:'#E05555',S:'#D4AF37',P:'#cc88ff'};
+var VW = {C:1.70,N:1.55,O:1.52,S:1.80,P:1.80};
+function ec(e){return EC[e]||'#FF6B35';}
+function vw(e){return (VW[e]||1.70);}
+var all = RC.concat(PH.map(function(a){return[a[0],a[1],a[2]];}));
+var n=all.length, sx=0,sy=0,sz=0;
+all.forEach(function(p){sx+=p[0];sy+=p[1];sz+=p[2];});
+var cx=sx/n,cy=sy/n,cz=sz/n;
+var maxD=0;
+all.forEach(function(p){
+  var d=Math.sqrt((p[0]-cx)*(p[0]-cx)+(p[1]-cy)*(p[1]-cy)+(p[2]-cz)*(p[2]-cz));
+  if(d>maxD)maxD=d;
+});
+var rotX=0.25, rotY=-0.4;
+function mat(){
+  var cx=Math.cos(rotX),sx=Math.sin(rotX),cy=Math.cos(rotY),sy=Math.sin(rotY);
+  return [cy, sy*sx, sy*cx, 0, cx, -sx, -sy, cy*sx, cy*cx];
+}
+function rot3(M,x,y,z){return [M[0]*x+M[1]*y+M[2]*z, M[3]*x+M[4]*y+M[5]*z, M[6]*x+M[7]*y+M[8]*z];}
+function catmull(pts, steps){
+  var out=[];
+  for(var i=0;i<pts.length-1;i++){
+    var p0=pts[Math.max(i-1,0)], p1=pts[i], p2=pts[i+1], p3=pts[Math.min(i+2,pts.length-1)];
+    for(var s=0;s<steps;s++){
+      var t=s/steps, t2=t*t, t3=t2*t;
+      var b0=-.5*t3+t2-.5*t, b1=1.5*t3-2.5*t2+1, b2=-1.5*t3+2*t2+.5*t, b3=.5*t3-.5*t2;
+      out.push([b0*p0[0]+b1*p1[0]+b2*p2[0]+b3*p3[0], b0*p0[1]+b1*p1[1]+b2*p2[1]+b3*p3[1], b0*p0[2]+b1*p1[2]+b2*p2[2]+b3*p3[2]]);
+    }
+  }
+  out.push(pts[pts.length-1]);
+  return out;
+}
+var zoom=1.0;
+function resize(){cv.width=cv.offsetWidth||640;cv.height=cv.offsetHeight||400;}
+resize();
+window.addEventListener('resize',function(){resize();draw();});
+function draw(){
+  var W=cv.width, H=cv.height;
+  var ctx=cv.getContext('2d');
+  var scale=Math.min(W,H)*0.38/maxD*zoom;
+  var M=mat();
+  function proj(x,y,z){var p=rot3(M,x-cx,y-cy,z-cz);return {sx:W/2+p[0]*scale, sy:H/2-p[1]*scale, sz:p[2]};}
+  ctx.fillStyle='#000';
+  ctx.fillRect(0,0,W,H);
+  var recProj=RC.map(function(a){return proj(a[0],a[1],a[2]);});
+  var phProj=PH.map(function(a){return proj(a[0],a[1],a[2]);});
+  var pcProj=PC.map(function(a){return proj(a[0],a[1],a[2]);});
+  var surf=document.createElement('canvas');
+  surf.width=W; surf.height=H;
+  var sc=surf.getContext('2d');
+  PH.forEach(function(a,i){
+    var p=phProj[i]; var r=vw(a[3])*scale*1.7;
+    var g=sc.createRadialGradient(p.sx,p.sy,0,p.sx,p.sy,r);
+    g.addColorStop(0,'rgba(0,255,65,0.12)'); g.addColorStop(1,'rgba(0,255,65,0)');
+    sc.beginPath(); sc.arc(p.sx,p.sy,r,0,6.283); sc.fillStyle=g; sc.fill();
+  });
+  ctx.save(); ctx.filter='blur(9px)'; ctx.drawImage(surf,0,0); ctx.restore();
+  var rcSpline=catmull(RC,6);
+  var rcSProj=rcSpline.map(function(a){return proj(a[0],a[1],a[2]);});
+  function zShadeRec(z){
+    var t=Math.max(0,Math.min(1,(z+maxD)/(2*maxD)));
+    var r=Math.round(30+t*(74-30)), g2=Math.round(80+t*(144-80)), b=Math.round(140+t*(217-140));
+    return 'rgb('+r+','+g2+','+b+')';
+  }
+  for(var i=0;i<rcSProj.length-1;i++){
+    var p1=rcSProj[i], p2=rcSProj[i+1];
+    ctx.beginPath(); ctx.moveTo(p1.sx,p1.sy); ctx.lineTo(p2.sx,p2.sy);
+    ctx.strokeStyle=zShadeRec((p1.sz+p2.sz)/2); ctx.lineWidth=4; ctx.lineCap='round'; ctx.lineJoin='round'; ctx.stroke();
+  }
+  var pcSpline=catmull(PC,8);
+  var pcSProj=pcSpline.map(function(a){return proj(a[0],a[1],a[2]);});
+  function zShadeP(z){
+    var t=Math.max(0,Math.min(1,(z+maxD)/(2*maxD)));
+    var r=Math.round(160+t*(255-160)), g2=Math.round(50+t*(107-50)), b=Math.round(10+t*(53-10));
+    return 'rgb('+r+','+g2+','+b+')';
+  }
+  for(var i=0;i<pcSProj.length-1;i++){
+    var p1=pcSProj[i], p2=pcSProj[i+1];
+    ctx.beginPath(); ctx.moveTo(p1.sx,p1.sy); ctx.lineTo(p2.sx,p2.sy);
+    ctx.strokeStyle=zShadeP((p1.sz+p2.sz)/2); ctx.lineWidth=5.5; ctx.lineCap='round'; ctx.stroke();
+  }
+  var items=[];
+  recProj.forEach(function(p){items.push({type:'dot',x:p.sx,y:p.sy,z:p.sz,r:3.5,col:'#4A90D9'});});
+  var BD2=2.1*2.1;
+  for(var i=0;i<PH.length-1;i++){
+    for(var j=i+1;j<PH.length;j++){
+      var dx=PH[i][0]-PH[j][0],dy=PH[i][1]-PH[j][1],dz=PH[i][2]-PH[j][2];
+      if(dx*dx+dy*dy+dz*dz<=BD2){
+        items.push({type:'bond', x1:phProj[i].sx,y1:phProj[i].sy, x2:phProj[j].sx,y2:phProj[j].sy, z:(phProj[i].sz+phProj[j].sz)/2, c1:ec(PH[i][3]),c2:ec(PH[j][3])});
+      }
+    }
+  }
+  PH.forEach(function(a,i){
+    var p=phProj[i]; var r=vw(a[3])*scale*0.55+2;
+    items.push({type:'sphere',x:p.sx,y:p.sy,z:p.z,r:r,col:ec(a[3])});
+  });
+  items.sort(function(a,b){return a.z-b.z;});
+  items.forEach(function(it){
+    if(it.type==='dot'){
+      ctx.beginPath(); ctx.arc(it.x,it.y,it.r,0,6.283); ctx.fillStyle=it.col; ctx.fill();
+    } else if(it.type==='bond'){
+      var mx=(it.x1+it.x2)/2, my=(it.y1+it.y2)/2;
+      ctx.beginPath(); ctx.moveTo(it.x1,it.y1); ctx.lineTo(mx,my); ctx.strokeStyle=it.c1; ctx.lineWidth=2.2; ctx.lineCap='round'; ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(mx,my); ctx.lineTo(it.x2,it.y2); ctx.strokeStyle=it.c2; ctx.lineWidth=2.2; ctx.stroke();
+    } else {
+      var g=ctx.createRadialGradient(it.x-it.r*.3,it.y-it.r*.3,it.r*.08,it.x,it.y,it.r);
+      g.addColorStop(0,'#fff'); g.addColorStop(0.25,it.col); g.addColorStop(1,'#111');
+      ctx.beginPath(); ctx.arc(it.x,it.y,it.r,0,6.283); ctx.fillStyle=g; ctx.fill();
+    }
+  });
+  var lh=28, lpad=14;
+  ctx.fillStyle='rgba(0,0,0,0.92)'; ctx.fillRect(0,H-lh,W,lh);
+  ctx.font='11px IBM Plex Mono,monospace'; ctx.fillStyle='#4A90D9';
+  ctx.fillRect(lpad,H-lh+8,36,10); ctx.fillStyle='#555';
+  ctx.fillText('Receptor backbone',lpad+42,H-lh+18);
+  var px2=lpad+180;
+  ctx.fillStyle='#FF6B35'; ctx.fillRect(px2,H-lh+8,12,10);
+  ctx.fillStyle='rgba(255,107,53,0.4)'; ctx.fillRect(px2+14,H-lh+8,12,10);
+  ctx.fillStyle='#555'; ctx.fillText('Peptide ribbon + VDW surface',px2+30,H-lh+18);
+  ctx.fillStyle='#555'; ctx.textAlign='right'; ctx.fillText('drag . scroll',W-lpad,H-lh+18); ctx.textAlign='left';
+}
+var drag=false,lx=0,ly=0;
+cv.addEventListener('mousedown',function(e){drag=true;lx=e.clientX;ly=e.clientY;cv.style.cursor='grabbing';});
+window.addEventListener('mouseup',function(){drag=false;cv.style.cursor='grab';});
+window.addEventListener('mousemove',function(e){
+  if(!drag)return; rotY+=(e.clientX-lx)*0.007; rotX+=(e.clientY-ly)*0.007;
+  lx=e.clientX;ly=e.clientY; draw();
+});
+cv.addEventListener('wheel',function(e){e.preventDefault(); zoom*=(e.deltaY>0?0.92:1.09); draw();},{passive:false});
+var lt=null;
+cv.addEventListener('touchstart',function(e){lt=e.touches[0];},{passive:true});
+cv.addEventListener('touchmove',function(e){
+  e.preventDefault(); var t=e.touches[0];
+  rotY+=(t.clientX-lt.clientX)*0.009; rotX+=(t.clientY-lt.clientY)*0.009; lt=t; draw();
+},{passive:false});
+draw();
+})();
+  }, 100);
+}
+
+/* ── show welcome on load ── */
+showWelcome();
+
+/* ── focus input on load and on click ── */
+input.focus();
+document.addEventListener('click', function(){input.focus();});
+
+})();
+</script>
 </body>
 </html>
