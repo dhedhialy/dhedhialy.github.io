@@ -4,9 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Aly Dhedhi — terminal</title>
-<meta name="description" content="Aly Dhedhi — Healthcare AI researcher at MIT CSAIL and MIT Critical Data. Pre-med, machine learning, clinical AI systems, patient trajectory modeling." />
-<meta property="og:title" content="Aly Dhedhi — Healthcare AI Researcher" />
-<meta property="og:description" content="Healthcare AI researcher at MIT CSAIL and MIT Critical Data. Pre-med, machine learning, clinical AI." />
+<meta name="description" content="Aly Dhedhi — SWE at Kellis Lab, MIT CSAIL. Building AI for cognitive cartography and healthcare. Contributor to MIT Critical Data and Ponytail." />
+<meta property="og:title" content="Aly Dhedhi — SWE @ Kellis Lab" />
+<meta property="og:description" content="SWE at Kellis Lab, MIT CSAIL. Building AI for cognitive cartography and healthcare. Contributor to MIT Critical Data and Ponytail." />
 <meta property="og:url" content="https://dhedhialy.github.io" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -21,7 +21,7 @@
   "name": "Aly Dhedhi",
   "givenName": "Aly",
   "familyName": "Dhedhi",
-  "jobTitle": "Healthcare AI Researcher",
+  "jobTitle": "SWE @ Kellis Lab, MIT CSAIL",
   "affiliation": [
     {"@type": "Organization", "name": "MIT CSAIL"},
     {"@type": "Organization", "name": "MIT Critical Data"}
@@ -255,17 +255,19 @@ function showWelcome(){
 ( ___ )-------------------------------------------------------( ___ )
  |   |                                                         |   |
  |   |     _    _  __   __  ____  _   _ _____ ____  _   _ ___  |   |
- |   |    / \\  | | \\ \\ / / |  _ \\| | | | ____|  _ \\| | | |_ _| |   |
- |   |   / _ \\ | |  \\ V /  | | | | |_| |  _| | | | | |_| || |  |   |
- |   |  / ___ \\| |___| |   | |_| |  _  | |___| |_| |  _  || |  |   |
- |   | /_/   \\_\\_____|_|   |____/|_| |_|_____|____/|_| |_|___| |   |
+ |   |    / \  | | \ \ / / |  _ \| | | | ____|  _ \| | | |_ _| |   |
+ |   |   / _ \ | |  \ V /  | | | | |_| |  _| | | | | |_| || |  |   |
+ |   |  / ___ \| |___| |   | |_| |  _  | |___| |_| |  _  || |  |   |
+ |   | /_/   \_\_____|_|   |____/|_| |_|_____|____/|_| |_|___| |   |
  |___|                                                         |___|
 (_____)-------------------------------------------------------(_____)
 </pre>
-<div>Welcome to Aly Dhedhi's terminal portfolio.</div>
-<div class="dim">----</div>
-<div>Type <span class="y">help</span> for available commands.</div>`
+<div>Welcome to Aly Dhedhi's portfolio.</div>
+<div class="dim">----</div>`
   );
+  showWhoami();
+  printHTML(`<div class="dim">----</div>
+<div>Type <span class="y">help</span> for available commands.</div>`);
 }
 
 /* ── WHOAMI ── */
@@ -278,11 +280,11 @@ function showWhoami(){
   </div>
   <span style="vertical-align:middle">
     <span class="g" style="font-size:15px;font-weight:700">aly dhedhi</span><br/>
-    <span class="t" style="font-size:12px;">Healthcare AI Researcher · MIT CSAIL · MIT Critical Data</span><br/>
-    <span style="font-size:11px;color:rgba(1,255,0,.4)">
-      Pre-med high school researcher working on clinical AI systems, embedding-based patient trajectory modeling, and computational biomedical pipeline design.
-    </span>
+    <span class="t" style="font-size:12px;">SWE @ Kellis Lab · MIT CSAIL</span>
   </span>
+</div>
+<div class="line t" style="font-size:13px;margin-top:6px">
+Hi, I'm Aly. I am a SWE currently working in the Kellis Lab developing an AI platform built around cognitive cartography. My main work is in the healthcare side of things where I am currently applying reinforcement learning models to model clinician actions into the platform. I also contribute to some MIT Critical Data projects, mainly the JEPA ones, and to Ponytail by Dietrich Gebert.
 </div>`
   );
 }
