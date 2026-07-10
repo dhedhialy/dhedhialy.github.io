@@ -7,157 +7,130 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:#0a0a0a;color:#c0c0c0;font-family:'JetBrains Mono',monospace;overflow-x:hidden}
+body{background:#0a0a0a;color:#c0c0c0;font-family:'JetBrains Mono',monospace;overflow-x:hidden;font-size:13px;line-height:1.6}
 ::selection{background:#00ff41;color:#0a0a0a}
 ::-webkit-scrollbar{width:6px}
 ::-webkit-scrollbar-track{background:#0a0a0a}
 ::-webkit-scrollbar-thumb{background:#005a1a;border-radius:3px}
 
-.prompt{color:#00ff41}
-.dim{color:#005a1a}
-.text{color:rgba(192,192,192,.8)}
-.muted{color:rgba(192,192,192,.5)}
+.wrap{max-width:800px;margin:0 auto;padding:40px 20px}
 
-section{max-width:720px;margin:0 auto;padding:40px 20px}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-bottom:0}
+.g{color:#00ff41}
+.d{color:#005a1a}
+.m{color:rgba(192,192,192,.5)}
+.t{color:rgba(192,192,192,.8)}
 
-h1{color:#00ff41;font-size:clamp(1.5rem,4vw,2.2rem);font-weight:700}
-.sub{color:rgba(192,192,192,.5);font-size:13px;margin-top:6px}
+pre{color:#00ff41;font-size:clamp(6px,1.5vw,12px);line-height:1.1}
 
-.bio{font-size:13px;line-height:1.8;margin-top:16px}
-.bio a{color:#00ff41;text-decoration:none}
-.bio a:hover{text-decoration:underline}
+.tag{display:inline-block;padding:2px 8px;border:1px solid rgba(0,90,26,.3);border-radius:3px;font-size:10px;color:rgba(192,192,192,.5);margin-right:4px;margin-bottom:4px}
 
-.tag{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border:1px solid rgba(0,90,26,.4);border-radius:4px;font-size:11px;color:rgba(192,192,192,.6);transition:color .3s,border-color .3s}
-.tag:hover{color:#00ff41;border-color:rgba(0,255,65,.4)}
+details{margin-bottom:8px}
+summary{color:#00ff41;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;font-size:13px;padding:6px 0}
+summary:hover{opacity:.8}
+summary .a{color:#005a1a;transition:color .2s}
+details[open] .a{color:#00ff41}
+.detail{padding:4px 0 12px 20px;border-left:1px solid rgba(0,90,26,.3);margin-left:4px}
+.detail p,.detail li{font-size:12px;line-height:1.7;color:rgba(192,192,192,.7);margin-bottom:4px}
+.detail li{list-style:none}
+.detail li::before{content:"- ";color:#005a1a}
+.detail a{color:#00ff41;text-decoration:none}
+.detail a:hover{text-decoration:underline}
 
-h2{color:#00ff41;font-size:14px;font-weight:600;margin-bottom:12px;margin-top:40px}
+h2{color:#00ff41;font-size:13px;font-weight:600;margin-top:32px;margin-bottom:8px}
 h2::before{content:"# ";color:#005a1a}
 
-.project{margin-bottom:20px}
-.project-title{color:#00ff41;font-size:13px;font-weight:600}
-.project-meta{color:rgba(192,192,192,.4);font-size:11px;margin-top:2px}
-.project-desc{font-size:12px;line-height:1.7;margin-top:6px;color:rgba(192,192,192,.7)}
-.project-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
-.project-tags span{padding:2px 8px;border:1px solid rgba(0,90,26,.3);border-radius:3px;font-size:10px;color:rgba(192,192,192,.5)}
-
-details{margin-bottom:12px;cursor:pointer}
-summary{color:#00ff41;font-size:13px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px}
-summary .arrow{color:#005a1a;transition:color .2s}
-details[open] .arrow{color:#00ff41}
-.detail-body{padding:8px 0 12px 20px}
-.detail-body p,.detail-body li{font-size:12px;line-height:1.7;color:rgba(192,192,192,.7);margin-bottom:4px}
-.detail-body li{list-style:none}
-.detail-body li::before{content:"- ";color:#005a1a}
-
-.contrib-img{width:100%;filter:brightness(.9) contrast(1.1);border-radius:6px}
-
 .contact{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-.contact a{font-size:12px;color:rgba(192,192,192,.6);text-decoration:none;padding:6px 12px;border:1px solid rgba(0,90,26,.3);border-radius:4px;transition:color .3s,border-color .3s}
+.contact a{font-size:12px;color:rgba(192,192,192,.6);text-decoration:none;padding:4px 10px;border:1px solid rgba(0,90,26,.3);border-radius:4px;transition:color .3s,border-color .3s}
 .contact a:hover{color:#00ff41;border-color:rgba(0,255,65,.4)}
 
-.footer{text-align:center;margin-top:60px;padding-bottom:40px}
-.footer p{color:#005a1a;font-size:11px}
+.footer{text-align:center;margin-top:60px;padding-bottom:40px;color:#005a1a;font-size:11px}
+
+.contrib-img{width:100%;filter:brightness(.9) contrast(1.1);border-radius:6px}
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<!-- ─── HERO ─── -->
-<section class="hero">
-  <div>
-    <p class="dim" style="font-size:12px"><span class="prompt">$</span> whoami</p>
-    <h1>aly dhedhi</h1>
-    <p class="sub"><span class="dim">$</span> ./status --compbio --mantis-ai</p>
+<pre>
 
-    <div class="bio">
-      <p>
-        high schooler doing compbio at <span class="prompt">MIT</span>.
-        building <span class="prompt">Mantis AI</span> — contributing to
-        <a href="https://github.com/lpm0073/critical-data">CRIT Data</a>,
-        <a href="https://github.com/lpm0073">Kellis Lab</a>,
-        <span class="prompt">ponytail</span>, and whatever else breaks.
-      </p>
-      <p style="margin-top:8px">
-        <span class="tag">tb-resistance-discovery</span>
-        <span class="tag">ICU-mortality-prediction</span>
-        <span class="tag">BBB-peptide-design</span>
-        <span class="tag">RADAR</span>
-        <span class="tag">Cartograph</span>
-      </p>
-    </div>
-  </div>
-</section>
+  _____                                                         _____
+( ___ )-------------------------------------------------------( ___ )
+ |   |                                                         |   |
+ |   |     _    _  __   __  ____  _   _ _____ ____  _   _ ___  |   |
+ |   |    / \  | | \ \ / / |  _ \| | | | ____|  _ \| | | |_ _| |   |
+ |   |   / _ \ | |  \ V /  | | | | |_| |  _| | | | | |_| || |  |   |
+ |   |  / ___ \| |___| |   | |_| |  _  | |___| |_| |  _  || |  |   |
+ |   | /_/   \_\_____|_|   |____/|_| |_|_____|____/|_| |_|___| |   |
+ |___|                                                         |___|
+(_____)-------------------------------------------------------(_____)
 
-<section>
+</pre>
+
+<p style="margin-bottom:4px">SWE, developing AI systems, interested in how AI can be applied to solving healthcare issues.</p>
+<p class="m" style="font-size:11px">compbio @ MIT · building Mantis AI</p>
 
 <!-- ─── PROJECTS ─── -->
 <h2>projects</h2>
 
-<div class="project">
-  <div class="project-title">Drug-Resistance Forecasting (Kellis Lab · MIT)</div>
-  <div class="project-meta">May 2026 – Present · XGBoost · AlphaFold · molecular docking</div>
-  <div class="project-desc">
-    Built a predictive pipeline using XGBoost to forecast unobserved drug-resistant mutations in <em>M. tuberculosis</em> (0.971 AUROC). Integrated population homoplasy data with AlphaFold structural features and drug-pocket coordinates to rank 44,016 variants. Validated against 12,287 CRYPTIC clinical isolates; discovered a literature-novel candidate mechanism (gyrB Q538L). First-author paper in prep.
-  </div>
-  <div class="project-tags">
-    <span>XGBoost</span><span>AlphaFold</span><span>molecular docking</span><span>tb-resistance</span>
-  </div>
-</div>
-
-<div class="project">
-  <div class="project-title">Mantis AI</div>
-  <div class="project-meta">2026 · full-stack AI</div>
-  <div class="project-desc">
-    Building it.
-  </div>
-</div>
-
-<div class="project">
-  <div class="project-title">Clinical Bias in Guidelines (MIT Critical Data)</div>
-  <div class="project-meta">March 2026 – Present · NLP · pipelines</div>
-  <div class="project-desc">
-    Pipeline that parses clinical guideline DOIs, extracts cited studies, and pulls participant demographics to measure representation gaps. Automated citation retrieval, demographic extraction, and evidence-base visualization.
-  </div>
-  <div class="project-tags"><span>NLP</span><span>RADAR</span><span>clinical bias</span></div>
-</div>
-
-<div class="project">
-  <div class="project-title">Hospital-Invariant ICU Representation Learning</div>
-  <div class="project-meta">March – April 2026 · MIMIC-IV · K-Means · XGBoost</div>
-  <div class="project-desc">
-    MIMIC-IV mortality prediction pipeline with K-Means phenotype discovery + gradient-boosted learning. Cluster-augmented representations achieved AUROC 0.869, AUPRC 0.302. Accepted to IEEE CIBCB 2026.
-  </div>
-  <div class="project-tags"><span>MIMIC-IV</span><span>K-Means</span><span>IEEE</span></div>
-</div>
-
-<div class="project">
-  <div class="project-title">BBB-Penetrant Peptide Design for EGFRvIII</div>
-  <div class="project-meta">Nov 2025 – March 2026 · in silico · docking</div>
-  <div class="project-desc">
-    Automated pipeline for designing BBB-penetrant peptides targeting EGFRvIII in glioblastoma. Top-ranked cyclized Angiopep-2/GE11 fusion candidate identified through structural prediction and docking. Accepted to IEEE CIBCB 2026.
-  </div>
-  <div class="project-tags"><span>peptide design</span><span>EGFRvIII</span><span>IEEE</span></div>
-</div>
-
 <details>
-  <summary><span class="arrow">&gt;</span> Cartograph</summary>
-  <div class="detail-body">
-    <p>Multimodal biomedical data → interactive knowledge maps. Built within an MIT CSAIL initiative. Standardized evidence objects, embedding alignment across hypotheses and uncertainty landscapes, drug repurposing via shared representation spaces, deterministic agentic workflows.</p>
+  <summary><span class="a">&gt;</span> Mantis AI</summary>
+  <div class="detail">
+    <p>Fixing bugs, applying <span class="g">rl-healthcare-actions</span> into the platform.</p>
   </div>
 </details>
 
 <details>
-  <summary><span class="arrow">&gt;</span> Patient Trajectory Modeling (CSAIL)</summary>
-  <div class="detail-body">
-    <p>Two-stage pipeline: multimodal embedding (scaled labs + diagnosis text) + K-Means clustering to derive latent clinical states from MIMIC-IV. Engineered trajectory-level features, analyzed ~millions of temporal steps. Mentored under Manolis Kellis.</p>
+  <summary><span class="a">&gt;</span> ponytail</summary>
+  <div class="detail">
+    <p>General contributions to the opencode ponytail skill — the laziest, most efficient coding mode that exists.</p>
+  </div>
+</details>
+
+<details>
+  <summary><span class="a">&gt;</span> TB Resistance Discovery <span class="m">(Kellis Lab · MIT)</span></summary>
+  <div class="detail">
+    <p>Built a predictive ML pipeline (XGBoost) to forecast unobserved drug-resistant mutations in <em>M. tuberculosis</em> — <span class="g">0.971 AUROC</span>. Integrated population homoplasy data with AlphaFold structural features and drug-pocket spatial coordinates to rank <span class="g">44,016</span> accessible variants. Validated against <span class="g">12,287</span> CRYPTIC clinical isolates. Discovered a literature-novel candidate mechanism (<span class="g">gyrB Q538L</span>) via molecular docking.</p>
+    <p style="margin-top:6px">First-author paper in preparation. <a href="https://github.com/DHEDHiAly/tb-resistance-discovery">github</a></p>
+    <div style="margin-top:4px"><span class="tag">XGBoost</span><span class="tag">AlphaFold</span><span class="tag">molecular docking</span><span class="tag">M. tuberculosis</span></div>
+  </div>
+</details>
+
+<details>
+  <summary><span class="a">&gt;</span> ICU Mortality Prediction <span class="m">(IEEE CIBCB 2026)</span></summary>
+  <div class="detail">
+    <p>MIMIC-IV pipeline combining K-Means phenotype discovery with gradient-boosted learning. Cluster-augmented representations hit <span class="g">AUROC 0.869</span>, AUPRC 0.302. First-author paper accepted to IEEE CIBCB 2026.</p>
+    <p style="margin-top:4px"><span class="tag">MIMIC-IV</span><span class="tag">K-Means</span><span class="tag">XGBoost</span><span class="tag">IEEE</span></p>
+  </div>
+</details>
+
+<details>
+  <summary><span class="a">&gt;</span> BBB-Penetrant Peptide Design <span class="m">(IEEE CIBCB 2026)</span></summary>
+  <div class="detail">
+    <p>Automated in silico pipeline for designing BBB-penetrant peptides targeting EGFRvIII in glioblastoma. Top-ranked cyclized Angiopep-2/GE11 fusion candidate identified through structural prediction, docking, and interface analysis. First-author paper accepted to IEEE CIBCB 2026.</p>
+    <p style="margin-top:4px"><span class="tag">peptide design</span><span class="tag">EGFRvIII</span><span class="tag">glioblastoma</span><span class="tag">IEEE</span></p>
+  </div>
+</details>
+
+<details>
+  <summary><span class="a">&gt;</span> Clinical Bias in Guidelines <span class="m">(MIT Critical Data)</span></summary>
+  <div class="detail">
+    <p>Pipeline that analyzes clinical guideline DOIs, extracts cited studies, and pulls participant demographics to measure representation gaps in clinical research. Automated citation retrieval, demographic extraction, and evidence-base visualization.</p>
+    <p style="margin-top:4px"><span class="tag">NLP</span><span class="tag">clinical bias</span><span class="tag">guidelines</span></p>
+  </div>
+</details>
+
+<details>
+  <summary><span class="a">&gt;</span> Patient Trajectory Modeling <span class="m">(MIT CSAIL)</span></summary>
+  <div class="detail">
+    <p>Two-stage pipeline: multimodal embedding (scaled labs + diagnosis text) + K-Means clustering to derive latent clinical states from MIMIC-IV. Engineered trajectory-level features across millions of temporal steps. Mentored under Manolis Kellis.</p>
+    <p style="margin-top:4px"><span class="tag">MIMIC-IV</span><span class="tag">embeddings</span><span class="tag">K-Means</span><span class="tag">CSAIL</span></p>
   </div>
 </details>
 
 <!-- ─── COMMUNITY ─── -->
 <h2>community</h2>
 <p style="font-size:12px;line-height:1.7;color:rgba(192,192,192,.7)">
-  Raised <span class="prompt">$23,000+</span> for <span class="prompt">The Citizens Foundation</span> → funds education for underprivileged kids in Pakistan. Top fundraiser twice. Also: Eagle Scout (in progress), Muay Thai, tennis, piano (Trinity Grade 5).
+Raised <span class="g">$23,000+</span> for <span class="g">The Citizens Foundation</span> → education for underprivileged kids in Pakistan. Top fundraiser twice. Eagle Scout (in progress). Muay Thai, tennis, piano (Trinity Grade 5).
 </p>
 
 <!-- ─── CONTRIBUTIONS ─── -->
@@ -173,10 +146,8 @@ details[open] .arrow{color:#00ff41}
   <a href="https://www.linkedin.com/in/aly-dhedhi-673228350" target="_blank">linkedin</a>
 </div>
 
-<div class="footer">
-  <p><span class="prompt">aly dhedhi</span> © 2026</p>
-</div>
+<div class="footer"><span class="g">aly dhedhi</span> © 2026</div>
 
-</section>
+</div>
 </body>
 </html>
