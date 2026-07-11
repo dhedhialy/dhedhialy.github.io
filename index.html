@@ -4,9 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Aly Dhedhi — terminal</title>
-<meta name="description" content="Aly Dhedhi — SWE at Kellis Lab, MIT CSAIL. Building AI for cognitive cartography and healthcare. Contributor to MIT Critical Data and Ponytail." />
+<meta name="description" content="Aly Dhedhi — SWE at Kellis Lab, MIT CSAIL. Contributing to AI for cognitive cartography and healthcare. Contributor to Ponytail." />
 <meta property="og:title" content="Aly Dhedhi — SWE @ Kellis Lab" />
-<meta property="og:description" content="SWE at Kellis Lab, MIT CSAIL. Building AI for cognitive cartography and healthcare. Contributor to MIT Critical Data and Ponytail." />
+<meta property="og:description" content="SWE at Kellis Lab, MIT CSAIL. AI for cognitive cartography and healthcare. Contributor to Ponytail." />
 <meta property="og:url" content="https://dhedhialy.github.io" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -23,8 +23,7 @@
   "familyName": "Dhedhi",
   "jobTitle": "SWE @ Kellis Lab, MIT CSAIL",
   "affiliation": [
-    {"@type": "Organization", "name": "MIT CSAIL"},
-    {"@type": "Organization", "name": "MIT Critical Data"}
+    {"@type": "Organization", "name": "MIT CSAIL"}
   ],
   "url": "https://dhedhialy.github.io",
   "sameAs": [
@@ -302,10 +301,10 @@ Aly Dhedhi — SWE at Kellis Lab, MIT CSAIL. Contributing to an AI platform for 
 function showAbout(){
   printHTML(
 `<div class="line t" style="font-size:13px">
-Aly Dhedhi is a high school sophomore with a deep interest in biomedical research, particularly at the intersection of machine learning and clinical medicine. He is currently on a pre-med pathway with a specific interest in oncology, working across MIT CSAIL and MIT Critical Data on clinical AI systems, ICU predictive modeling, and computational molecular design.
+Aly Dhedhi is a high school sophomore with a deep interest in biomedical research, particularly at the intersection of machine learning and clinical medicine. He is currently on a pre-med pathway with a specific interest in oncology, working at MIT CSAIL on clinical AI systems and computational molecular design.
 </div>
 <div class="line t" style="font-size:13px;margin-top:4px">
-His research spans patient trajectory representation in latent embedding space, unsupervised clustering of physiological time-series data, multimodal clinical representation learning, and structure-based peptide design for CNS drug delivery.
+His research spans unsupervised clustering of physiological time-series data, multimodal clinical representation learning, and structure-based peptide design for CNS drug delivery.
 </div>
 <div style="margin-top:4px">
   <span class="tag">Clinical Time-Series</span>
@@ -345,7 +344,7 @@ function showProjects(){
 <details>
   <summary><span class="arrow">&#9656;</span> ICU Mortality Prediction <span class="dim">IEEE CIBCB 2026</span></summary>
   <div class="detail-body">
-    <p class="inst">MIT Critical Data — March 2026</p>
+    <p class="inst">March 2026</p>
     <p>An end-to-end ICU mortality prediction pipeline built on <span class="g">MIMIC-IV</span>, processing high-dimensional tabular features from clinical time-series and laboratory data. Spanning data extraction, feature engineering, model evaluation, interpretability, and unsupervised patient phenotyping.</p>
     <div class="result-block">
       <strong>Results:</strong> Evaluated Logistic Regression, Random Forest, XGBoost, and LightGBM under class imbalance — achieving <strong>AUROC &gt; 0.84</strong> and <strong>AUPRC ≈ 0.28</strong>. Applied GroupKFold cross-validation for patient-level separation. Optimized thresholds for <strong>high-recall performance (≈ 0.85)</strong> via PR curve analysis. MiniBatchKMeans clustering with cluster-specific SHAP analysis. UMAP for low-dimensional validation.
