@@ -270,7 +270,12 @@ $$ |  $$ |$$ |  $$ |$$ |      $$ |  $$ |$$ |  $$ |  $$ |
 $$$$$$$  |$$ |  $$ |$$$$$$$$\ $$$$$$$  |$$ |  $$ |$$$$$$\ 
 \_______/ \__|  \__|\________|\_______/ \__|  \__|\______|
 </pre>
-<div>Welcome to Aly Dhedhi's portfolio.</div>
+<div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px">
+  <a href="https://github.com/DHEDHiAly" target="_blank" style="color:#01ff00;text-decoration:none;padding:4px 10px;border:1px solid rgba(1,255,0,.25);border-radius:3px;font-size:12px">github</a>
+  <a href="https://www.linkedin.com/in/aly-dhedhi-673228350" target="_blank" style="color:#01ff00;text-decoration:none;padding:4px 10px;border:1px solid rgba(1,255,0,.25);border-radius:3px;font-size:12px">linkedin</a>
+  <a href="mailto:alydhedhi@gmail.com" style="color:#01ff00;text-decoration:none;padding:4px 10px;border:1px solid rgba(1,255,0,.25);border-radius:3px;font-size:12px">alydhedhi@gmail.com</a>
+  <a href="mailto:alyd@mit.edu" style="color:#01ff00;text-decoration:none;padding:4px 10px;border:1px solid rgba(1,255,0,.25);border-radius:3px;font-size:12px">alyd@mit.edu</a>
+</div>
 <div class="dim">----</div>`
   );
   showWhoami();
@@ -304,7 +309,6 @@ His research spans patient trajectory representation in latent embedding space, 
 </div>
 <div style="margin-top:4px">
   <span class="tag">Clinical Time-Series</span>
-  <span class="tag">Patient Trajectory</span>
   <span class="tag">Unsupervised Clustering</span>
   <span class="tag">Multimodal Learning</span>
   <span class="tag">Computational Drug Design</span>
@@ -377,15 +381,8 @@ function showProjects(){
     <p>First-author paper in prep. <a href="https://github.com/DHEDHiAly/tb-resistance-discovery">github</a></p>
     <div><span class="tag">XGBoost</span><span class="tag">AlphaFold</span><span class="tag">Docking</span><span class="tag">M. tb</span></div>
   </div>
-</details>
-
-<details>
-  <summary><span class="arrow">&#9656;</span> Patient Trajectory Modeling <span class="dim">MIT CSAIL</span></summary>
-  <div class="detail-body">
-    <p>Multimodal embedding (labs + text) + K-Means → latent clinical states from MIMIC-IV. Trajectory features across millions of steps. Mentored by Manolis Kellis.</p>
-    <div><span class="tag">Embeddings</span><span class="tag">MIMIC-IV</span><span class="tag">CSAIL</span><span class="tag">K-Means</span></div>
-  </div>
 </details>`
+
   );
   initMolViewer();
 }
