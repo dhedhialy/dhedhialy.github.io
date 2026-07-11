@@ -102,7 +102,7 @@ details[open] .arrow{color:#e5e500}
 <div id="terminal">
   <div id="output"></div>
   <div id="input-line">
-    <span class="prompt">&gt; </span>
+    <span class="prompt">alydhedhi.portfolio &gt; </span>
     <input type="text" id="cmd-input" autofocus spellcheck="false" autocomplete="off" />
   </div>
 </div>
@@ -147,7 +147,7 @@ function printHTML(html){
 function printCmd(cmd){
   var d = document.createElement('div');
   d.className = 'cmd-output';
-  d.innerHTML = '<span class="cmd-header">&gt; ' + cmd.split('<')[0].split('>')[0] + '</span>';
+  d.innerHTML = '<span class="cmd-header">alydhedhi.portfolio &gt; ' + cmd.split('<')[0].split('>')[0] + '</span>';
   out.appendChild(d);
   scrollBottom();
 }
@@ -155,7 +155,7 @@ function printCmd(cmd){
 function printError(cmd){
   var d = document.createElement('div');
   d.className = 'cmd-output';
-  d.innerHTML = '<span class="cmd-header">&gt; ' + cmd + '</span><div class="cmd-error">command not found: ' + cmd + '</div>';
+  d.innerHTML = '<span class="cmd-header">alydhedhi.portfolio &gt; ' + cmd + '</span><div class="cmd-error">command not found: ' + cmd + '</div>';
   out.appendChild(d);
   scrollBottom();
 }
